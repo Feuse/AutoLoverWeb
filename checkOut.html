@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/script.js"></script>
+    <title>AutoLover</title>
+</head>
+
+<body style="background-color: #f7fafced;">
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-hearts">
+                <img class="logo-big" src="/media/heart.png" alt="" />
+                <img class="logo-small" src="/media/heart.png" alt="" />
+            </div>
+            <h1 class="s-auto small">
+                Auto
+            </h1>
+            <h1 class="s-lover small">
+                Lover
+            </h1>
+        </div>
+        <nav class="nav-bar ">
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ol class="nav-bar-items">
+                <li class="home nav-item">
+                    <a href="/index.html">Home</a>
+                </li>
+                <li class="what-we-do nav-item">
+                    <a href="/index.html">What do we do?</a>
+                </li>
+                <li class="contact nav-item">
+                    <a href="/index.html">Contact</a>
+                </li>
+
+            </ol>
+        </nav>
+    </header>
+
+    <body>
+        <h1 class="how-to">click on the service you wish to add!</h1>
+        <div class="main-wrapper-checkout wrapper">
+            <div class="services-wrapper grid-boxes disable-select">
+                <div class="services">
+                    <div class="service-badoo service ">
+                        <img class="service-img" alt="" src="/media/badoo.png">
+
+                        <div class="service-credentials">
+                            <p class="username-service">Username</p>
+                            <input maxlength="50" type="email" class="text-box-service-email " />
+                            <div class="break"></div>
+                            <p class="password-service">Password</p>
+                            <input maxlength="50" type="password" class="text-box-service-password" />
+                            <div class="break"></div>
+                        </div>
+                        <div class="btn btn-login-service disable-select">
+                            <p class="login-text-service" onclick="">Login</p>
+                        </div>
+                    </div>
+                    <div class="service-tinder service ">
+                        <img src="/media/tinder.png" alt="" class="service-img">
+                        <div class="service-credentials">
+                            <p class="username-service">Username</p>
+                            <input maxlength="50" type="email" class="text-box-service-email " />
+                            <div class="break"></div>
+                            <p class="password-service">Password</p>
+                            <input maxlength="50" type="password" class="text-box-service-password" />
+                            <div class="break"></div>
+                        </div>
+                        <div class="btn btn-login-service disable-select">
+                            <p class="login-text-service" onclick="">Login</p>
+                        </div>
+                    </div>
+                    <div class="service-okcupid service ">
+                        <img src="/media/okcupid.png" alt="" class="service-img">
+                        <div class="service-credentials">
+                            <p class="username-service">Username</p>
+                            <input maxlength="50" type="email" class="text-box-service-email " />
+                            <div class="break"></div>
+                            <p class="password-service">Password</p>
+                            <input maxlength="50" type="password" class="text-box-service-password" />
+                            <div class="break"></div>
+                        </div>
+                        <div class="btn btn-login-service disable-select">
+                            <p class="login-text-service" onclick="">Login</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-wrapper ">
+                <div class="checkout-box grid-boxes disable-select">
+                    <div class="inner-boxes">
+                        <img class="visa-img" src="/media/visa.jpg" />
+                        <img class="paypal-img" src="/media/paypal-logo.jpg" />
+                        <h2 class="payment-method-text">Choose Payment Method</h2>
+                        <div class="method credit">
+                            <p class="card-number">Card Number</p>
+                            <input class="text-box-card-number text-box-details " type="tel" autocomplete="cc-number" x-autocompletetype="cc-number" pattern="\d*" maxlength="19" placeholder="Card Number" />
+                            <div class="break"></div>
+                            <p class="expiration-date">Expiration Date</p>
+                            <input class="text-box-login-password text-box-details text-box-date" type="tel" autocomplete="cc-exp " maxlength="4 " placeholder="MM/YY " />
+                            <div class="break "></div>
+                            <p class="security-code ">Security Code</p>
+                            <input class="text-box-card-number text-box-details " autocomplete="cc-csc" placeholder="Security Code" type="tel" pattern="\d*" maxlength="4" />
+                        </div>
+                        <hr class="h-line">
+                        <h2 class="information-text">Personal Information</h2>
+                        <div class="info method">
+                            <p class="full-name">Full name</p>
+                            <input maxlength="50" type="text" class="text-box-details text-box-full-name" />
+                            <div class="break"></div>
+                            <p class="info-email">Email</p>
+                            <input maxlength="50" type="email" class="text-box-details text-box-info-email" />
+                            <div class="break"></div>
+                        </div>
+                    </div>
+                    <div class="btn btn-submit disable-select">
+                        <p class="submit-text" onclick="">Submit</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-wrapper grid-boxes disable-select">
+                <div class="order-box">
+                    <div class="order-username">
+                        <h2 class="uname">User Name</h2>
+                    </div>
+                    <hr class="order-line">
+                    <div class="payment-section-items">
+                    </div>
+                    <hr class="order-line">
+                    <div class="payment-section">
+                        <p class="payment-value"> Total Payment</p>
+                        <h3 class="total-payment-text">0$</h3>
+                    </div>
+                    <hr class="order-line">
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <footer>
+        <div class="rights">
+            &copy; All rights reserved to 'AutoLover' 2021.
+        </div>
+    </footer>
+
+</html>

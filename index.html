@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/beforeLoad.js"></script>
+    <script src="/script.js"></script>
+    <title>AutoLover</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-hearts">
+                <img class="logo-big" src="/media/heart.png" alt="" />
+                <img class="logo-small" src="/media/heart.png" alt="" />
+            </div>
+            <h1 class="s-auto small">
+                Auto
+            </h1>
+            <h1 class="s-lover small">
+                Lover
+            </h1>
+        </div>
+        <nav class="nav-bar ">
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-bar-items">
+                <li class="what-we-do nav-item">
+                    <a href="#about">What do we do?</a>
+                </li>
+                <li class="contact nav-item">
+                    <a href="#contact">Contact</a>
+                </li>
+                <li class="login nav-item">
+                    <a href="/login.html">Login</a>
+                </li>
+                <li class="signup nav-item">
+                    <a href="/login.html" onclick="">Sign up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-wrapper wrapper">
+        <h2 class="header disable-select">Buy
+            <span style="color: #FE4646;">likes</span> and manage all your dating portfolios in one place!</h2>
+
+        <div class="container-plans-wrapper bg-gray disable-select ">
+
+            <h1 id="plans" class="our-plans disable-select ">Our Plans</h1>
+            <div class="container-plans disable-select">
+                <div class="plan-box">
+                    <h2 class="swipe"> 500 swipes</h2>
+                    <p class="price">
+                        $2.99 / day
+                    </p>
+                    <div class="plan-desc-wrapper">
+                        <p class="plan-desc">Control all your profiles</p>
+                        <p class="plan-desc">Get access to “Boost”</p>
+                    </div>
+                    <div class="buy-now-btn 500">
+                        <input id="500-swipes" type="hidden" value="500" />
+                        <a>Buy Now!</a>
+                    </div>
+                </div>
+                <div class="plan-box">
+                    <h2 class="swipe"> 1500 swipes</h2>
+                    <p class="price">
+                        $3.99 / day
+                    </p>
+                    <div class="plan-desc-wrapper">
+                        <p class="plan-desc">Control all your profiles</p>
+                        <p class="plan-desc">Get access to “Boost”</p>
+                    </div>
+                    <div class="buy-now-btn 1500">
+                        <input id="1500-swipes" type="hidden" value="1500" />
+                        <a>Buy Now!</a>
+                    </div>
+                </div>
+                <div class=" plan-box ">
+                    <h2 class="swipe "> 2000 swipes</h2>
+                    <p class="price ">
+                        $4.99 / day
+                    </p>
+                    <div class="plan-desc-wrapper ">
+                        <p class="plan-desc ">Control all your profiles</p>
+                        <p class="plan-desc ">Get access to “Boost”</p>
+                    </div>
+                    <div class="buy-now-btn 2000">
+                        <input id="2000-swipes" type="hidden" value="2000" />
+                        <a>Buy Now!</a>
+                    </div>
+                </div>
+                <div class="plan-box ">
+                    <div class="sale ">
+                        <p class="sale-text ">
+                            SALE
+                        </p>
+                    </div>
+                    <h2 class="swipe "> 2500 swipes</h2>
+                    <p class="price ">
+                        $5.99 / day
+                    </p>
+                    <div class="plan-desc-wrapper ">
+                        <p class="plan-desc ">Control all your profiles</p>
+                        <p class="plan-desc ">Get access to “Boost”</p>
+                    </div>
+                    <div class="buy-now-btn 2500">
+                        <input id="2500-swipes" type="hidden" value="2500" />
+                        <a>Buy Now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="about " class="divider "></div>
+
+        <h1 class="what-do disable-select ">What do we do?</h1>
+        <p class="what-do-explain disable-select ">We provide various services for the worlds leading online dating apps.</p>
+        <div class="container-what-we-do disable-select ">
+            <div class="what-box ">
+                <img class="icon " src="/media/phone icon.png " alt=" ">
+                <div class="inner-box ">
+                    <p class="system-header ">Automated Liking System</p>
+                    <p class="system-desc ">Let our smart algorithms swipe right while you sleep tight</p>
+                </div>
+            </div>
+            <div class="what-box ">
+                <img class="icon " src="/media/dashboard.png " alt=" ">
+                <div class="inner-box ">
+                    <p class="system-header ">One Dashboard</p>
+                    <p class="system-desc ">Manage all your profiles in one single dashboard</p>
+                </div>
+            </div>
+            <div class="what-box ">
+                <img class="icon " src="/media/rocket.png " alt=" ">
+                <div class="inner-box ">
+                    <p class="system-header ">Boost your profile!</p>
+                    <p class="system-desc ">Boost your profiles reputation using our “Booster” algorithm</p>
+                </div>
+            </div>
+        </div>
+        <div id="contact " class="contact-wrapper bg-gray ">
+            <h1 class="hear-from-you disable-select ">We would love to hear from you...</h1>
+            <div class="container-contact ">
+                <div class="contact-box ">
+                    <div class="user-details-wrapper ">
+                        <p class="first ">First name:</p>
+                        <input maxlength="50 " class="text-box " />
+                        <div class="break "></div>
+                        <p class="last ">Last name:</p>
+                        <input maxlength="50 " class="text-box " />
+                        <div class="break "></div>
+                        <p class="email ">Email:</p>
+                        <input maxlength="50 " class="text-box " />
+                    </div>
+                    <div class="message-wrapper ">
+                        <p class="message ">Message:</p>
+                        <div class="send-btn disable-select ">
+                            <p class="send-text ">Send!</p>
+                        </div>
+                        <textarea maxlength="150 " class="text-box-message "></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        <div class="rights ">
+            &copy; All rights reserved to 'AutoLover' 2021.
+        </div>
+    </footer>
+</body>
+
+</html>
