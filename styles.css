@@ -25,7 +25,16 @@ body {
 }
 
 .how-to {
-    margin-top: 50px
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.error-service-login {
+    color: red;
+    font-size: smaller;
+    margin: 0;
+    padding: 0;
+    margin-top: -30px;
 }
 
 .main-wrapper-checkout-window {
@@ -177,13 +186,12 @@ body {
 }
 
 .service-credentials {
-    text-align: center;
-    padding: 10px;
     padding-bottom: 0px;
     flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    place-content: center;
     width: 210px;
 }
 
@@ -194,9 +202,42 @@ body {
 }
 
 .text-box-service-email {
+    font-size: smaller;
     margin-left: 11px;
     width: 110px;
     height: 18px;
+}
+
+.loader {
+    border: 16px solid #F9FCFF;
+    border-radius: 50%;
+    border-top: 16px solid #FF6161;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .contact-wrapper {
@@ -551,6 +592,14 @@ html {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.date-service {
+    width: 174px;
+}
+
+.service-message {
+    margin-bottom: 42px;
 }
 
 .addmore {

@@ -3,31 +3,13 @@ var value;
 var url;
 var loginv;
 var checkout;
-
-var badooList = new Array();
-var badooPrice = 0
-var totalBadooPrice = 0;
-var badooSwipes = 0;
-var totalBadooSwipes = 0;
-var badoocounter = 0;
-
-var tinderList = new Array();
-var tinderPrice = 0
-var totalTinderPrice = 0;
-var tinderSwipes = 0;
-var totalTinderSwipes = 0;
-var tindercounter = 0;
-
-var cupidList = new Array();
-var cupidPrice = 0
-var totalCupidPrice = 0;
-var cupidSwipes = 0;
-var totalCupidSwipes = 0;
-var cupidcounter = 0;
+var clickServicesList = [];
+var servicesData = [];
 var dict = [];
+var services = [];
 (function setServicesArray() {
 
-    var services = ["badoo", "tinder", "okcupid"];
+    services = ["badoo", "tinder", "okcupid"];
     for (let val of services) {
         dict[val] = {
             counter: 0,
@@ -36,7 +18,9 @@ var dict = [];
             swipes: 0
         }
     }
+    servicesData.push(dict)
     dict["totalPayment"] = 0;
+
 
 })();
 
@@ -46,140 +30,13 @@ var giveValue = function(myKey) {
 
 $(document).ready(function() {
 
-    /*   localStorage.setItem("total", 0);
-      $('.service-badoo').on('click', function(event) {
-          totalBadooSwipes = localStorage.getItem("swipes");
-          totalBadooPrice = priceGenerator(totalBadooSwipes);
-          totalPayment = parseInt(localStorage.getItem("total")) + totalBadooPrice;
-          localStorage.setItem("total", totalPayment);
-          $('.total-payment-text').empty();
-          $('.total-payment-text').append(Math.round((totalPayment + Number.EPSILON) * 100) / 100);
+    $('.service ').on('click', function(e) {
+        $('.service').css('border', 'none');
 
-          badooSwipes = parseInt(badooSwipes) + parseInt(totalBadooSwipes);
-          badooPrice = badooPrice + totalBadooPrice;
+    });
 
-          event.preventDefault(badooSwipes);
-          badooList.push(badoocounter);
-          if (badoocounter == '0') {
-              $(".payment-section-items").append("<div class=\"item-badoo item\"><img src=\"/media/badoo.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + badooSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((badooPrice + Number.EPSILON) * 100) / 100 + "$</h3> <p class=\"service-remove\"> X</p> </div>");
-              $(".total-payment-text").text(Math.round((totalPayment + Number.EPSILON) * 100) / 100);
-          } else {
-              $(".item-badoo").empty();
-              $(".item-badoo").append("<img src=\"/media/badoo.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + badooSwipes + "</p> <h3 class=\"service-price\"> " + badooPrice + "$</h3> <p class=\"service-remove\"> X</p>");
-          }
-          badoocounter++;
-      });
-      $('.service-tinder').on('click', function(event) {
-          totalTinderSwipes = localStorage.getItem("swipes");
-          totalTinderPrice = priceGenerator(totalTinderSwipes);
-
-          totalPayment = parseInt(localStorage.getItem("total")) + totalTinderPrice;
-          tinderPrice = tinderPrice + totalTinderPrice;
-          tinderSwipes = parseInt(tinderSwipes) + parseInt(totalTinderSwipes);
-          localStorage.setItem("total", totalPayment);
-          $('.total-payment-text').empty();
-          $('.total-payment-text').append(Math.round((totalPayment + Number.EPSILON) * 100) / 100);
-
-          event.preventDefault();
-          tinderList.push(tindercounter);
-          if (tindercounter == '0') {
-
-              $(".payment-section-items").append("<div class=\"item-tinder item\"><img src=\"/media/tinder.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + tinderSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((tinderPrice + Number.EPSILON) * 100) / 100 + "$</h3> <p class=\"service-remove\"> X</p> </div>");
-              $(".total-payment-text").text(Math.round((totalPayment + Number.EPSILON) * 100) / 100);
-          } else {
-              $(".item-tinder").empty();
-              $(".item-tinder").append("<img src=\"/media/tinder.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + tinderSwipes + "</p> <h3 class=\"service-price\"> " + tinderPrice + "$</h3> <p class=\"service-remove\"> X</p>");
-          }
-          tindercounter++;
-      });
-      $('.service-okcupid').on('click', function(event) {
-
-          var xx = $('.service').hasClass('service-okcupid')
-          console.log(xx)
-          totalCupidSwipes = localStorage.getItem("swipes");
-          totalCupidPrice = priceGenerator(totalCupidSwipes);
-          cupidSwipes = parseFloat(cupidSwipes) + parseFloat(totalCupidSwipes);
-          cupidPrice = cupidPrice + totalCupidPrice;
-          totalPayment = parseFloat(localStorage.getItem("total")) + totalCupidPrice;
-          localStorage.setItem("total", totalPayment);
-          console.log(totalPayment)
-          $('.total-payment-text').empty();
-          $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100);
-
-          event.preventDefault();
-          cupidList.push(cupidcounter);
-          if (cupidcounter == 0) {
-              $(".payment-section-items").append("<div class=\"item-okcupid item\"><img src=\"/media/okcupid.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + cupidSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((totalCupidPrice) * 100) / 100 + "$</h3> <p class=\"service-remove\"> X</p> </div>");
-              $(".total-payment-text").text(Math.round((totalPayment) * 100) / 100);
-          } else {
-              $(".item-okcupid").empty();
-              $(".item-okcupid").append("<img src=\"/media/okcupid.png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + cupidSwipes + "</p> <h3 class=\"service-price\"> " + cupidPrice + "$</h3> <p class=\"service-remove\"> X</p>");
-          }
-          $('.service-remove').on('click', function(event) {
-              //not complete
-              event.preventDefault();
-              var x = $(".service-remove").closest("div")[0].remove();
-              console.log(x)
-              var totalpay = localStorage.getItem("total") - cupidPrice;
-              $('.total-payment-text').empty();
-              $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100);
-              totalCupidSwipes = 0;
-              totalCupidPrice = 0;
-              cupidPrice = 0;
-              totalPayment = 0;
-              cupidcounter = 0;
-          });
-          cupidcounter++;
-      }); */
-
-    var insertsCounter = 0;
-    var totalSwipes = 0;
-    var totalPrice = 0;
     var totalPayment = 0;
-    var cupidCounter = 0;
 
-    function classNameGenerator(name) {
-        if (name == 'service-badoo') {
-
-        } else if (name == 'service-tinder') {
-
-        } else if (name == 'service-okcupid') {
-
-        }
-    }
-
-    function classNameGenerator(ele) {
-        var badoo1 = $(ele).hasClass('badoo')
-        var tinder1 = $(ele).hasClass('tinder')
-        var okcupid1 = $(ele).hasClass('okcupid')
-        var badoo = $(ele).hasClass('service-badoo')
-        var tinder = $(ele).hasClass('service-tinder')
-        var okcupid = $(ele).hasClass('service-okcupid')
-        var badooItem = $(ele).hasClass('badoo-remove')
-        var tinderItem = $(ele).hasClass('tinder-remove')
-        var okcupidItem = $(ele).hasClass('okcupid-remove')
-        if (badoo) {
-            return "badoo";
-        } else if (tinder) {
-            return "tinder";
-        } else if (okcupid) {
-            return "okcupid";
-        } else if (badooItem) {
-            return "badoo";
-        } else if (tinderItem) {
-            return "tinder";
-        } else if (okcupidItem) {
-            return "okcupid";
-        } else if (badoo1) {
-            return "badoo";
-        } else if (tinder1) {
-            return "tinder";
-        } else if (okcupid1) {
-            return "okcupid";
-        }
-    }
-
-    var servicesList = ['badoo', 'tinder', 'okcupid'];
     const container = document.querySelector('.main-wrapper-checkout');
     const swipes = localStorage.getItem("swipes");
 
@@ -204,6 +61,7 @@ $(document).ready(function() {
             if (!clickServicesList.includes(serviceName)) {
 
                 clickServicesList.push(serviceName);
+                console.log(clickServicesList)
                 dict[serviceName].swipes = swipes;
                 if (swipes) {
 
@@ -223,7 +81,7 @@ $(document).ready(function() {
                     $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
 
                     if (serviceValues.counter == 0) {
-                        $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper\"><h1 class=\"addmore-" + serviceName + " addmore style= cursor: pointer;\">+</h1><div class=\"item-" + serviceName + " item\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p> </div></div>");
+                        $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><h1 class=\"addmore-" + serviceName + " addmore style= cursor: pointer;\">+</h1><div class=\"item-" + serviceName + " item\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p> </div></div>");
                         $(".total-payment-text").text(Math.round((totalPayment) * 100) / 100 + " $");
                     }
 
@@ -250,7 +108,7 @@ $(document).ready(function() {
 
     //REMOVE ELEMENTS
 
-    var clickServicesList = [];
+
     container.addEventListener('click', function(e) {
 
         var services = ["service-remove", "okcupid-remove"]
@@ -281,7 +139,12 @@ $(document).ready(function() {
             $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
             dict["totalPayment"] = totalpay;
 
-            var selector = document.querySelector('.add-more-wrapper');
+            var selector = document.querySelector('.add-more-wrapper-' + serviceName);
+
+            $('.service-' + serviceName).css('border', 'none');
+
+
+
             selector.remove();
             serviceValues.counter = 0;
             serviceValues.totalSwipes = 0;
@@ -320,7 +183,7 @@ $(document).ready(function() {
                         $('.total-payment-text').empty();
                         $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
                         if (serviceValues.counter == 0) {
-                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper\"><h1 class=\"addmore-okcupid " + serviceName + "\">+</h1><div class=\"item-" + serviceName + " item\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p> </div></div>");
+                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><h1 class=\"addmore-okcupid " + serviceName + "\">+</h1><div class=\"item-" + serviceName + " item\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p> </div></div>");
                             $(".total-payment-text").text(Math.round((totalPayment) * 100) / 100 + " $");
                         }
                         /* else {
@@ -361,123 +224,18 @@ $(document).ready(function() {
             $('.total-payment-text').empty();
             $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
 
-            /*  $('.service-remove').on('click', function(event) {
-                 console.log(43)
-
-                 serviceValues = giveValue(serviceName);
-                 var totalpay = parseFloat(giveValue("totalPayment")) - parseFloat(serviceValues.totalPrice);
-                 $('.total-payment-text').empty();
-                 $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
-                 dict["totalPayment"] = totalpay;
-
-
-                 $(this).closest(".add-more-wrapper")[0].remove();
-                 serviceValues.counter = 0;
-                 serviceValues.totalSwipes = 0;
-                 serviceValues.totalPrice = 0;
-             }); */
         } else {
             container.removeEventListener('click', e);
         }
     });
 
-
-
-
-    /*  $('.service').on('click', function(event) {
-         var serviceName = classNameGenerator(this);
-
-         var swipes = localStorage.getItem("swipes");
-
-         dict[serviceName].swipes = swipes;
-         if (swipes) {
-
-             var price = priceGenerator(swipes);
-
-             serviceValues = giveValue(serviceName);
-
-             dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(serviceValues.swipes);
-             dict[serviceName].totalPrice = parseFloat(serviceValues.totalPrice) + parseFloat(price);
-
-             dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
-
-             totalPayment = giveValue("totalPayment");
-             serviceValues = giveValue(serviceName);
-
-             $('.total-payment-text').empty();
-             $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
-
-             if (serviceValues.counter == 0) {
-                 $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper\"><h1 class=\"add-more " + serviceName + "\">+</h1><div class=\"item-" + serviceName + " item\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p> </div></div>");
-                 $(".total-payment-text").text(Math.round((totalPayment) * 100) / 100 + " $");
-             }
-           
-             serviceValues.counter++;
-
-             $('.service-remove').on('click', function(event) {
-                 console.log(43)
-                 var serviceName = classNameGenerator(this);
-                 serviceValues = giveValue(serviceName);
-                 var totalpay = parseFloat(giveValue("totalPayment")) - parseFloat(serviceValues.totalPrice);
-                 $('.total-payment-text').empty();
-                 $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
-                 dict["totalPayment"] = totalpay;
-
-
-                 $(this).closest(".add-more-wrapper")[0].remove();
-                 serviceValues.counter = 0;
-                 serviceValues.totalSwipes = 0;
-                 serviceValues.totalPrice = 0;
-             });
-
-             $('.add-more').on('click', function() {
-                 var swipes = localStorage.getItem("swipes");
-                 var serviceName = classNameGenerator(this);
-                 var price = priceGenerator(swipes);
-
-                 console.log(serviceValues.totalSwipes)
-
-                 serviceValues = giveValue(serviceName);
-
-                 dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(swipes);
-                 dict[serviceName].totalPrice = parseFloat(serviceValues.totalPrice) + parseFloat(price);
-
-                 dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
-
-                 totalPayment = giveValue("totalPayment");
-                 serviceValues = giveValue(serviceName);
-
-                 $(".item-" + serviceName + "").empty();
-                 $(".item-" + serviceName + "").append("<img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"> <p class=\"service-swipes\">" + serviceValues.totalSwipes + "</p> <h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p>");
-
-                 $('.total-payment-text').empty();
-                 $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
-
-                 $('.service-remove').on('click', function(event) {
-                     console.log(43)
-                     var serviceName = classNameGenerator(this);
-                     serviceValues = giveValue(serviceName);
-                     var totalpay = parseFloat(giveValue("totalPayment")) - parseFloat(serviceValues.totalPrice);
-                     $('.total-payment-text').empty();
-                     $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
-                     dict["totalPayment"] = totalpay;
-
-
-                     $(this).closest(".add-more-wrapper")[0].remove();
-                     serviceValues.counter = 0;
-                     serviceValues.totalSwipes = 0;
-                     serviceValues.totalPrice = 0;
-                 });
-             });
-         }
-     }); */
-
-
-
 });
 $(document).ready(function() {
-    $('.btn-login-service').on('click', function() {
-        loginToService();
+    $('.btn-login-service').on('click', function(e) {
+        var str = this.classList[2];
+        console.log("this " + str)
+        serviceName = str.split('-')[1]
+        loginToService(serviceName, this);
     });
 });
 $(document).ready(function() {
@@ -533,10 +291,78 @@ function priceGenerator(totalSwipes) {
     }
 })();
 
+var dataList = {
+    Service: 0,
+
+}
+var allServices = {
+    0: "badoo",
+    1: "tinder",
+    2: "okcupid"
+};
+var authenticatedServices = [];
 $(document).ready(function() {
+
     if (!(!value)) {
         if (checkout > -1) {
             $('.uname').text(value);
+            $('.credentials-box-wrapper').append('<div class="loader"></div>');
+            $('.loader').css('display', 'block');
+            //  $('.btn-login-service').hide();
+            // $('.service-credentials').hide();
+            $.ajax({
+                type: "GET",
+                xhrFields: { withCredentials: true },
+                url: 'https://localhost:44345/api/authServices',
+                dataType: 'JSON',
+                success: function(response) {
+                    $('.loader').remove();
+                    // $('.loader').css('display', 'hidden');
+                    //  $('.loader').hide();
+                    console.log(response);
+                    //services return in int form
+
+                    for (let [key, value] of Object.entries(allServices)) {
+                        key = parseInt(key);
+                        console.log
+                        if (response.includes(key)) {
+                            authenticatedServices.push(value);
+                            console.log(authenticatedServices);
+                            var serviceFactory = new ServiceFactory();
+                            res = serviceFactory.create(value);
+                            console.log(res);
+
+                            //$('.service-credentials-' + res.type).hide();
+                            $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+                            $('.date-service').val(new Date().toDateInputValue());
+                            $('.date-service').prop('min', function() {
+                                return new Date().toDateInputValue();
+                            });
+                        } else {
+                            $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-credentials service-credentials-' + value + '\"> <p class=\"username-service\">Username</p> <input maxlength=\"50\" type=\"email\" class=\"text-box-service-email \" /> <div class=\"break\"></div> <p class=\"password-service\">Password</p> <input maxlength=\"50\" type=\"password\" class=\"text-box-service-password\" /> <div class=\"break\"></div> </div> <div class=\"btn btn-login-service login-' + value + ' disable-select\"> <p class=\"login-text-service\" onclick=\"\">Login</p> </div>');
+                            $('.credentials-box-wrapper-' + value).on('click', function(e) {
+                                console.log(e.target.classList)
+                                if (e.target.parentElement.classList[2] == 'login-' + value) {
+
+                                    loginToService(value, e.currentTarget.children[1]);
+                                }
+
+                            });
+                        }
+                    }
+
+                    //$('.loader').remove();
+                    //$('.btnName').show();
+                    //$('.loader-' + serviceName).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+                },
+                error: function(error) {
+                    $('.loader').remove();
+                    $('.btnName').show();
+                    $('.service-credentials').show();
+                    $('.login-' + serviceName).show();
+                    console.log(error);
+                }
+            });
         }
     }
 });
@@ -571,30 +397,30 @@ function setLoggedInState() {
     $(".user").css("cursor", "default")
 }
 
-function Badoo(type) {
-    this.type = type;
+function Badoo() {
+    this.type = "badoo";
     this.html = "<h1>test</h1>"
 }
 
-function Tinder(type) {
-    this.type = type;
+function Tinder() {
+    this.type = "tidner";
     this.html = "<h1>test</h1>"
 }
 
-function OkCupid(type) {
-    this.type = type;
+function OkCupid() {
+    this.type = "okcupid";
     this.html = "<h1>test</h1>"
 }
 
 function ServiceFactory() {
     this.create = (type) => {
         switch (type) {
-            case "Badoo":
-                return new Badoo(type);
-            case "Tinder":
-                return new Tinder(type);
-            case "OkCupid":
-                return new OkCupid(type);
+            case "badoo":
+                return new Badoo();
+            case "tinder":
+                return new Tinder();
+            case "okcupid":
+                return new OkCupid();
             default:
                 break;
         }
@@ -1012,17 +838,35 @@ function LoginHash(data) {
     return x;
 }
 
-function loginToService() {
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
+function loginToService(serviceName, context) {
+    $('.error-' + serviceName).remove();
     let password = $('.text-box-service-password').val()
     let username = $('.text-box-service-email').val()
     console.log(username)
+    console.log(context)
+
+
     data = {
         UserName: username,
         Password: password,
+        Service: parseInt(getKeyByValue(allServices, serviceName))
     }
+    console.log(data.Service + "eeeeeeeeeee")
     var xping = LoginHash(data)
     data.XPing = xping
-    console.log(data)
+    console.log(this)
+    var btnName = context.classList[2];
+
+    $('.' + btnName).hide();
+    $('.credentials-box-wrapper-' + serviceName).append('<div class="loader"></div>');
+    $('.loader').css('display', 'block');
+
+    $('.' + context.parentNode.children[0].classList[1]).hide();
+    $('.login-' + serviceName).hide();
     $.ajax({
         type: "POST",
         xhrFields: { withCredentials: true },
@@ -1030,16 +874,22 @@ function loginToService() {
         data: JSON.stringify({
             XPing: data.XPing,
             UserName: data.UserName,
-            Password: data.Password
+            Password: data.Password,
+            Service: data.Service
         }),
-
         contentType: "application/json",
         success: function(response) {
-            userId = response.user_id;
-            sessionId = response.session_id;
-            console.log(response);
+
+            $('.loader').remove();
+            $('.btnName').show();
+            $('.credentials-box-wrapper-' + serviceName).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
         },
         error: function(error) {
+            $('.loader').remove();
+            $('.service-credentials-' + serviceName).prepend('<div class="error-service-login error-' + serviceName + '">wrong username/password</div>');
+            $('.btnName').show();
+            $('.service-credentials').show();
+            $('.login-' + serviceName).show();
             console.log(error);
         }
     });
@@ -1056,6 +906,7 @@ function registerToWebsite() {
 
     $.ajax({
         type: "POST",
+        xhrFields: { withCredentials: true },
         url: 'https://localhost:44345/register',
         data: JSON.stringify({
             XPing: data.XPing,
@@ -1065,6 +916,7 @@ function registerToWebsite() {
 
         contentType: "application/json",
         success: function(response) {
+            alert("here")
             location.href = "https://localhost/dashboard.html";
         },
         error: function(error) {
@@ -1122,46 +974,73 @@ Date.prototype.toDateInputValue = (function() {
 
 $(document).ready(function() {
     $('#date').val(new Date().toDateInputValue());
+    $('.date-service').val(new Date().toDateInputValue());
+
 });
 
-function ScheduleTask() {
 
-    let time = $('#date').val()
-    let likes = $('#likes').val();
+$(document).ready(function() {
 
-    let f = $('#form-2').serialize();
-    console.log(f)
-    data = {
-        UserId: userId,
-        SessionId: sessionId,
-        Time: time,
-        Likes: likes
-    }
+    $('.btn-submit').on('click', function(e) {
+        $('.error-service-login').remove();
+        //check if there are any services that have been added to shopping cart but not authorized, if so block sending & prompt for authorization
+        var unauhorizedServices = [];
+        clickServicesList.forEach(element => {
+            if (!authenticatedServices.includes(element)) {
+                unauhorizedServices.push(element)
+            }
+        });
+        if (unauhorizedServices.length == 0 && clickServicesList.length > 0) {
 
-    var a = JSON.stringify(data);
-    console.log(a)
-    $.ajax({
-        type: "POST",
-        url: 'https://localhost:44345/api/schedule',
-        data: JSON.stringify({
-            UserId: data.UserId,
-            SessionId: data.SessionId,
-            Likes: data.Likes,
-            Time: data.Time
-        }),
-        dataType: "json",
-        contentType: "application/json",
-        success: function(response) {
-            let res = response;
+            var servicesNames = Object.getOwnPropertyNames(servicesData[0])
+            var servicesValues = Object.values(servicesData[0])
+            var data = []
 
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
+            for (let index = 0; index < servicesValues.length - 1; index++) {
+                if (authenticatedServices.includes(servicesNames[index + 1])) {
+                    if (servicesValues[index].totalSwipes > 0) {
+
+                        const name = servicesNames[index + 1];
+                        const value = servicesValues[index].totalSwipes;
+                        //index is also the services name cuz its an enum
+                        data.push({ Service: index, Likes: value })
+                    }
+                }
+            }
+            console.log(data)
+            $.ajax({
+                type: "POST",
+                url: 'https://localhost:44345/api/schedule',
+                xhrFields: { withCredentials: true },
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(response) {
+                    let res = response;
+
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        } else {
+            unauhorizedServices.forEach(element => {
+
+                $('.service-' + element).css('border', '2px solid red');
+
+                $('.service-credentials-' + element).prepend('<div style=position:absolute; class="error-service-login error-' + element + '">Please log into service</div>');
+
+            });
+        }
+        if (clickServicesList.length == 0) {
+            services.forEach(element => {
+                $('.service-' + element).css('border', '2px solid red');
+
+            });
         }
     });
-}
-
+});
 $(document).on("click", "#upload", function() {
     var file_data = $("#avatar").prop("files")[0];
     var file = new FormData();
