@@ -7,6 +7,9 @@ var clickServicesList = [];
 var servicesData = [];
 var dict = [];
 var services = [];
+var services = ['service-img', 'service', 'service-credentials'];
+
+var selectedService;
 (function setServicesArray() {
 
     services = ["badoo", "tinder", "okcupid"];
@@ -36,23 +39,23 @@ $(document).ready(function() {
     });
 
     var totalPayment = 0;
-
     const container = document.querySelector('.main-wrapper-checkout');
     const swipes = localStorage.getItem("swipes");
 
     // add service
 
     container.addEventListener('click', function(e) {
-        var services = ['service-img', 'service', 'service-credentials']
+
         var k;
 
         for (const key of services) {
-
-            if (e.target.classList.contains(key)) {
-                k = key;
+            var val = e.target.classList[0];
+            var name = val.split('-')[1]
+            if (name == key) {
+                k = name;
             }
         }
-        if (e.target.classList.contains(k) && k) {
+        if (name == k && k) {
 
 
             var str = e.target.classList[0];
@@ -304,6 +307,248 @@ var authenticatedServices = [];
 $(document).ready(function() {
 
     if (!(!value)) {
+        if (dashboard > -1) {
+            $('.service').hide();
+            $('.authenticated-service').hide();
+            $('.uname').text(value);
+            $('.inner-service').append('<div class="loader"></div>');
+            $('.loader').css('display', 'block');
+            //  $('.btn-login-service').hide();
+            // $('.service-credentials').hide();
+            $.ajax({
+                type: "GET",
+                xhrFields: { withCredentials: true },
+                url: 'https://localhost:44345/api/authServices',
+                dataType: 'JSON',
+                success: function(response) {
+                    $('.loader').remove();
+
+                    for (let [key, value] of Object.entries(allServices)) {
+                        key = parseInt(key);
+                        console.log
+                        if (response.includes(key)) {
+                            authenticatedServices.push(value);
+
+
+                            // $('.credentials-box-wrapper-').prepend('<div class=\"service-message message-' + value + '\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+                            // $('.date-service').val(new Date().toDateInputValue());
+                            // $('.date-service').prop('min', function() {
+                            //     return new Date().toDateInputValue();
+                            //  });
+                        }
+                    }
+
+                    //$('.loader').remove();
+                    //$('.btnName').show();
+                    //$('.loader-' + serviceName).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+                },
+                error: function(error) {
+                    // $('.loader').remove();
+                    //  $('.btnName').show();
+                    // $('.service-credentials').show();
+                    //$('.login-' + serviceName).show();
+                    console.log(error);
+                }
+            });
+        }
+    }
+});
+
+$(document).ready(function() {
+    const servicesContaienr = document.querySelector('.services-multiple');
+    const serviceContaienr = document.querySelector('.interface-box');
+
+    servicesContaienr.addEventListener('click', function(e) {
+        $('.pictures-container').empty();
+        $('.pictures-container').removeClass('pictures');
+        $('.error-service-login').remove();
+        $('.authenticated-service').hide();
+        $('.service').hide();
+        $('.inner-service').remove();
+        var str = e.target.classList[1];
+        serviceName = str.substring(str.indexOf("-") + 1);
+
+        $('.error-' + serviceName).remove();
+        if (services.includes(serviceName)) {
+
+            if (authenticatedServices.includes(serviceName)) {
+                $('.pictures-container').addClass('pictures-' + serviceName);
+                selectedService = serviceName;
+                var service = parseInt(getKeyByValue(allServices, selectedService));
+
+                //get images
+                $.ajax({
+                    type: "POST",
+                    xhrFields: { withCredentials: true },
+                    url: 'https://localhost:44345/api/getImages',
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        Service: service
+                    }),
+                    success: function(response) {
+                        if (serviceName == "badoo") {
+                            $('.imgwrapper-' + serviceName).css("box-shadow", "0 0 20px #783af9");
+                        } else if (serviceName == "tinder") {
+                            $('.imgwrapper-' + serviceName).css("box-shadow", "0 0 20px #f747b9");
+                        } else if (serviceName == "okcupid") {
+                            $('.imgwrapper-' + serviceName).css("box-shadow", "0 0 20px #f14c74");
+                        }
+
+                        $('.pictures-container').append('<div style="margin-right: 5px;cursor: pointer;" class="arrow-left"><div class="arrow-one" style=" width: 15px;border: 2px solid #FFFFFF;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);transform: matrix(-0.65, 0.73, -0.79, -0.64, 0, 0);"></div><div class="arrow-two" style="width: 15px;border: 2px solid #FFFFFF;box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);transform: matrix(0.62, 0.76, -0.82, 0.61, 0, 7);"></div></div>')
+                        $.each(response, function(k, v) {
+                            $('.pictures-container').append('<div class="picture-box" data-id=' + k + '><div class="trash-box"style="position: absolute;"><img src="/media/trash.png" alt="" class="trash-icon"></div><img class="picture-src" src="' + v + '" alt="picture"/></div>');
+
+                        });
+                    },
+                    error: function(error) {
+
+                    }
+                });
+                //get about me
+
+
+                $('.authenticated-service').show();
+
+            } else {
+                //$('.loader').hide();
+                // $('.service').prepend('<div class="inner-service"><img class="service-img " alt=" " src="/media/' + serviceName + '.png "> <div ></div><div class=\"service-credentials service-credentials-' + serviceName + '\"> <p class=\"username-service\">Username</p> <input maxlength=\"50\" type=\"email\" class=\"text-box-service-email \" /> <div class=\"break\"></div> <p class=\"password-service\">Password</p> <input maxlength=\"50\" type=\"password\" class=\"text-box-service-password\" /> <div class=\"break\"></div> </div> <div class=\"btn btn-login-service login-' + serviceName + ' disable-select\"> <p class=\"login-text-service\" onclick=\"\">Login</p> </div></div>')
+                //$('.service').show();
+
+                location.href = "https://localhost/checkOut.html";
+
+                /* $('.service').on('click', function(e) {
+                    $('.error-service-login').remove();
+                    if (e.target.parentNode.classList[2] == 'login-' + serviceName) {
+                        if (services.includes(serviceName)) {
+
+                            loginToService(serviceName, e.currentTarget.children[0].children[3]);
+                        }
+                    }
+
+                }); */
+            }
+        }
+    });
+
+
+    servicesContaienr.addEventListener('click', function(e) {
+        $('.error-service-login').remove();
+        if (e.target.parentNode.classList[2] == 'login-' + serviceName) {
+            if (services.includes(serviceName)) {
+
+                loginToService(serviceName, e.currentTarget.children[0].children[3]);
+            }
+        }
+    });
+
+    serviceContaienr.addEventListener('click', function(e) {
+        $('.error-service-login').remove();
+        if (e.target.parentNode.classList[0] == 'update-btn') {
+
+            var about = $(".about-me-text-box").val();
+            var service = parseInt(getKeyByValue(allServices, selectedService));
+
+            $.ajax({
+                type: "POST",
+                xhrFields: { withCredentials: true },
+                url: 'https://localhost:44345/api/updateAbout',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    About: about,
+                    Service: service
+                }),
+                success: function(response) {
+                    console.log(response)
+                    $(".about-me-text-box").val(response);
+                },
+                error: function(error) {
+
+                }
+            });
+        }
+    });
+
+    serviceContaienr.addEventListener('click', function(e) {
+        $('.error-service-login').remove();
+        if (e.target.classList[0] == 'add-picture') {
+            e.preventDefault();
+            $("#avatar").trigger('click');
+            var file_data = $("#avatar").prop("files")[0];
+            var file = new FormData();
+
+        }
+    });
+
+    $('#avatar').on('change', function(e) {
+        var file_data = $("#avatar").prop("files")[0];
+        var file = new FormData();
+        var service = parseInt(getKeyByValue(allServices, selectedService));
+        file.append("file", file_data);
+
+        $.ajax({
+            xhrFields: { withCredentials: true },
+            url: 'https://localhost:44345/api/uploadImage',
+            type: "POST",
+            dataType: 'json',
+            data: file,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                $.each(response, function(k, v) {
+                    $('.pictures-container').append('<div class="picture-box" data-id=' + k + '><div class="trash-box"style="position: absolute;"><img src="/media/trash.png" alt="" class="trash-icon"></div><img class="picture-src" src="' + v + '" alt="picture"/></div>');
+                    console.log(k)
+                    console.log(v)
+                });
+            },
+            error: function(error) {
+                console.log(error)
+            },
+        })
+    });
+
+});
+
+
+$(document).ready(function() {
+
+    $('.interface-box').on('click', '.trash-box', function(e) {
+
+        var dataId = this.parentNode.attributes[1].value;
+        var url = this.parentNode.parentNode.classList[1];
+        var serviceName = url.split('-')[1];
+
+
+        $.ajax({
+            type: "POST",
+            url: 'https://localhost:44345/api/removeImage',
+            xhrFields: { withCredentials: true },
+            contentType: "application/json",
+            data: JSON.stringify({
+                ImageId: dataId,
+                Service: parseInt(getKeyByValue(allServices, serviceName))
+            }),
+            success: function(response) {
+
+                $('.pictures-container').empty();
+                $.each(response, function(k, v) {
+                    $('.pictures-container').append('<div class="picture-box" data-id=' + k + '><div class="trash-box"style="position: absolute;"><img src="/media/trash.png" alt="" class="trash-icon"></div><img class="picture-src" src="' + v + '" alt="picture"/></div>');
+                    console.log(k)
+                    console.log(v)
+                });
+
+            },
+            error: function(error) {
+
+            }
+        });
+    });
+});
+
+
+
+$(document).ready(function() {
+
+    if (!(!value)) {
         if (checkout > -1) {
             $('.uname').text(value);
             $('.credentials-box-wrapper').append('<div class="loader"></div>');
@@ -332,22 +577,24 @@ $(document).ready(function() {
                             res = serviceFactory.create(value);
                             console.log(res);
 
-                            //$('.service-credentials-' + res.type).hide();
-                            $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+                            $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-message message-' + value + '\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
                             $('.date-service').val(new Date().toDateInputValue());
                             $('.date-service').prop('min', function() {
                                 return new Date().toDateInputValue();
                             });
                         } else {
-                            $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-credentials service-credentials-' + value + '\"> <p class=\"username-service\">Username</p> <input maxlength=\"50\" type=\"email\" class=\"text-box-service-email \" /> <div class=\"break\"></div> <p class=\"password-service\">Password</p> <input maxlength=\"50\" type=\"password\" class=\"text-box-service-password\" /> <div class=\"break\"></div> </div> <div class=\"btn btn-login-service login-' + value + ' disable-select\"> <p class=\"login-text-service\" onclick=\"\">Login</p> </div>');
-                            $('.credentials-box-wrapper-' + value).on('click', function(e) {
-                                console.log(e.target.classList)
-                                if (e.target.parentElement.classList[2] == 'login-' + value) {
+                            if (checkout > -1) {
 
-                                    loginToService(value, e.currentTarget.children[1]);
-                                }
+                                $('.credentials-box-wrapper-' + value).prepend('<div class=\"service-credentials service-credentials-' + value + '\"> <p class=\"username-service\">Username</p> <input maxlength=\"50\" type=\"email\" class=\"text-box-service-email \" /> <div class=\"break\"></div> <p class=\"password-service\">Password</p> <input maxlength=\"50\" type=\"password\" class=\"text-box-service-password\" /> <div class=\"break\"></div> </div> <div class=\"btn btn-login-service login-' + value + ' disable-select\"> <p class=\"login-text-service\" onclick=\"\">Login</p> </div>');
+                                $('.credentials-box-wrapper-' + value).show();
+                                $('.credentials-box-wrapper-' + value).on('click', function(e) {
+                                    console.log(e.target.classList)
+                                    if (e.target.parentElement.classList[2] == 'login-' + value) {
+                                        loginToService(value, e.currentTarget.children[1]);
+                                    }
 
-                            });
+                                });
+                            }
                         }
                     }
 
@@ -459,12 +706,12 @@ $(document).ready(function() {
 
     function closeMenu() {
         isToggle = false;
-        howto.classList.remove("active");
-        checkout.classList.remove("active");
-        hamburger.classList.remove("active");
-        navMenu.classList.remove("active");
-        main.classList.remove("active");
         try {
+            howto.classList.remove("active");
+            checkout.classList.remove("active");
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+            main.classList.remove("active");
             header.classList.remove("active");
 
 
@@ -582,19 +829,9 @@ $(document).ready(function() {
 $(document).ready(function() {
     // Add smooth scrolling to all links
     $("a").on('click', function(event) {
-        if (this.hash !== "") {
-            $('a').css('pointerEvents', 'none');
-            event.preventDefault();
-            var hash = this.hash;
-            console.log(hash)
-            $('html, body').animate({
-                    scrollTop: $(hash).offset().top
-                },
-                1200,
-                function() {
-                    $('a').css('pointerEvents', 'auto');
-                });
-        }
+        document.getElementById('contact').scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 });
 
@@ -831,10 +1068,11 @@ var s = morph(e, n)
 
 
 function LoginHash(data) {
-    data = "{\"$gpb\":\"badoo.bma.BadooMessage\",\"body\":[{\"message_type\":15,\"server_login_by_password\":{\"remember_me\":true,\"user\":\"" + data.UserName + "\",\"password\":\"" + data.Password + "\",\"stats_data\":\"JTE5dm5ybnNucm5ybnJucm5ybnJucm5ybnJucm4lMkM3Li5ucm5ybnJucm5wc24lMkM3Li5uJTJDNy4ubnNuJTJDNy4ubnBzbiUyQzcuLm4lMkM3Li5uJTE5JTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwJTJCJTJDMjc2JTYwbiU2MCUyQiUyQzI3NiU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwISolMjMlMkMlMjUnJTYwbiU2MDE3JTIwJTJGJTJCNiU2MCUxRm5xcW5wcm5ybnJucm5ybnJucm5ybnJucm5ybnJuc25ybnJucHVucm5zbnJudm52bnNuJTE5JTE5c3RwJTdCcyU3QiU3QnZyJTdCdXp6bnNybiUxOXd1cW5xcXolMUYlMUZuJTE5dHRucHNuJTE5d3VxbnFxem4lNjAlMkIlMkMyNzZhMiUyMzExNS0wJTI2c3RwJTdCcyU3QiU3QnZyJTdCdnNzbDYnJTNBNm8lMjQlMkInLiUyNiUxRCUxRCUyQiUyQzI3NmwoMW8xJTJCJTI1JTJDJTJCJTJDbzIlMjMxMTUtMCUyNiU2MCUxRiUxRm4lMTlwcXduc3JuJTE5d3VxbnFxJTdCJTFGJTFGbiUxOXZzc3VucHNuJTE5cm5ybiU2MCUyMDc2Ni0lMkNsJTIwNiUyQ2wlMjA2JTJDb28lMjAuLSEpJTYwJTFGJTFGJTFGbnp0biU2MCUwRi04JTJCLi4lMjNtd2xyYmolMTUlMkIlMkMlMjYtNTFiJTBDJTE2YnNybHJ5YiUxNSUyQiUyQ3R2eWIlM0F0dmtiJTAzMjIuJyUxNSclMjAlMDklMkI2bXdxdWxxdGJqJTA5JTBBJTE2JTBGJTBFbmIuJTJCKSdiJTA1JyEpLWtiJTAxKjAtJTJGJ20lN0JwbHJsdndzd2xzdyU3QmIlMTElMjMlMjQlMjMwJTJCbXdxdWxxdCU2MG4lNjAnJTJDbyUxNyUxMSU2MG5wdm56bnZub3N6cm5zbnNuc25zbnJucm4lNjAlMTUlMkIlMkNxcCU2MG42MDcnbiUyNCUyMy4xJ24lMkM3Li5uJTI0JTIzLjEnbiUyNCUyMy4xJ24lMjQlMjMuMSduJTI0JTIzLjEnbiUxOXJuJTI0JTIzLjEnbiUyNCUyMy4xJyUxRm4lMjQlMjMuMSduJTE5cyU3QnBybnNyenIlMUZuJTE5cyU3QnBybnNydnIlMUZuc24lMTklNjAlMDEqMC0lMkYnYiUxMiUwNiUwNGIlMTIuNyUyNSUyQiUyQ3h4JTEyLTA2JTIzJTIwLidiJTA2LSE3JTJGJyUyQzZiJTA0LTAlMkYlMjM2eHglMjMyMi4lMkIhJTIzNiUyQi0lMkNtJTNBbyUyNS0tJTI1LidvISowLSUyRidvMiUyNiUyNCUzQzIlMjYlMjQlNjBuJTYwJTAxKjAtJTJGJ2IlMTIlMDYlMDRiJTE0JTJCJzUnMHh4eHglMjMyMi4lMkIhJTIzNiUyQi0lMkNtMiUyNiUyNCUzQzIlMjYlMjQlNjBuJTYwJTBDJTIzNiUyQjQnYiUwMS4lMkInJTJDNnh4eHglMjMyMi4lMkIhJTIzNiUyQi0lMkNtJTNBbyUyQyUyMyEuJTNDbiUyMzIyLiUyQiElMjM2JTJCLSUyQ20lM0FvMiUyQyUyMyEuJTNDJTYwJTFGbiUxOSUxRm4lMjQlMjMuMSduJTE5NjA3J242MDcnJTFGJTFG\"}}],\"message_id\":2,\"message_type\":15,\"version\":1,\"is_background\":false}";
+    data = "{\"$gpb\":\"badoo.bma.BadooMessage\",\"body\":[{\"message_type\":15,\"server_login_by_password\":{\"remember_me\":true,\"user\":\"" + data.UserName + "\",\"password\":\"" + data.Password + "\",\"stats_data\":\"JTE5dm5ybnBucG4lMTklMTlvdnVucXolN0JzbiU3QnJ6cXRscXIlN0J0c3UlN0Jyd3d2JTFGbiUxOW92em5wdHV0bm9wJTdCcHRzbHJ1dnpwdHZ0d3B6JTFGbiUxOW92d25xc3pwbnNwenpybHR3dXNwdHIlN0J2c3clMUZuJTE5b3ZxbnF1cSU3Qm5zdnd1emxyendyJTdCcXVwenp1diUxRm4lMTlvdnBucXN6dW5vc3ZydXFscCU3QnF6d3V3c3RyenQlMUZuJTE5b3ZwbnFzenVuciUxRm4lMTlvdnBucHR1dG5vc3BxcnRsd3IlN0J0dyU3Qndwd3VwdCUxRm4lMTlvcSU3Qm5xc3Z0bnNycXdybHR1dHFydHZydHB0cCUxRm4lMTlvdnNucHZ6c25vc3FzJTdCJTdCbHp1cXNyd3Z3cnR1cSUxRm4lMTlvdnducHNwc25vdHNyJTdCbHZycHd6JTdCdndzdXUlMUZuJTE5b3ElN0Juc3V1dW5vdnp6JTdCbHN3enRzenpwc3p3cCUxRm4lMTlvdnduc3B3dW5vd3p6cWxzcHp2cyU3QnZ1cHJ1dCUxRm4lMTlvdnJuJTdCdXRub3ZxeiU3QmxxdHJxc3V6dyU3QndxJTdCdyUxRm4lMTlvdndudiU3QnBub3d2dXdsenF2JTdCc3F3cnp0cHclMUZuJTE5b3ZzbnMlN0Jybm9xcHNybHFydnJxd3Z2d3p0dnYlMUZuJTE5b3ElN0JudiU3Qm5vc3pyd2x0enNycXYlN0J3dHJ0cXElMUZuJTE5b3Z6bnF1dG5xJTdCcXVsdHJzdnB1cHR3cnpzJTFGbiUxOXN3em52c25vd3ZzcGxyJTdCcnRxc3N1cnN1dCUxRm4lMTlzdnRuc3BycG5zcHd3emxzcXdyJTdCcHZ2c3J1dCUxRm4lMTlzdnduc3F3dG5zenUlN0JsenIlN0J3dHZ6cHAlN0IlN0IlMUZuJTE5c3Z0bnB2cnZuc3dzc3ZsdnVyJTdCdnR1dndydnElMUZuJTE5c3dybnN1cXVubyU3QnB0dGxwdHJzdnIlN0J0cXJzJTdCJTFGbiUxOXN3cG5zdHZzbm9zdnN1bHZwcXJzcXV6cHZydHclMUZuJTE5c3dybnN3dnZub3NxdnVsd3R1cnR0JTdCdXR0cXMlMUZuJTE5c3YlN0Juc3Z3em5vc3JycGwlN0JwcXVwdyU3QnNxcSU3QnN6JTFGbiUxOXN2dG5zd3Z3biU3QnZzbHJ2enp6cHolN0J0c3JzcSUxRm4lMTlzdnpuc3B3em5vd3Zzd2xzcndzdCU3QnpycnYlN0IlMUZuJTE5c3Zzbnp6em5vd3B3emx0enpydiU3QnFzdnBycCUxRm4lMTlzcHpudnV3bm92dXJ6bCU3QnB2d3J3dHclN0J2diUxRm4lMTlzcXpud3Jub3dzc3VsdHV1dCU3QnclN0J6dHVwdCUxRm4lMTlzdiU3Qm51dXVuenZ1emxwcnZyd3dzcndydHUlMUZuJTE5c3dzbnNyenJud3d0cGxxdnJ0cnZ2d3V6cnElMUZuJTE5c3dzbnN2dXNudnJwd2x3JTdCc3F6d3NwdyU3QnN1diUxRm4lMTlzdiU3Qm5zdnd6bm9zd3NsdHJ2dXYlN0JwdHclN0J1dXpxJTFGbiUxOXN3c25zd3R0bnNxd3FscHF0c3BzcXJxcSUxRm4lMTlzdnpuc3Rxcm56cXZsdnd1JTdCcnV6dHclN0JxJTdCcyUxRm4lMTlzdnpuc3Rxcm5yJTFGbiUxOXN2c25zenAlN0JucHd2emx2dnF2dnR2JTdCenB1cXUlMUZuJTE5c3F6bnN0enBub3MlN0J1dWx0enB1cXYlN0JzJTdCenF3diUxRm4lMTklN0JwbnFxc25vdHYlN0JydmxwdHVwd3d1cndzdyUxRm4lMTlvd3Buc3RwJTdCbnN2dSU3QiU3Qmx2dXVyc3V1enR6cyUxRm4lMTlvd3Nuc3V1dW5wc3JxbHZ1d3BzJTdCdXB3dHpycSUxRm4lMTlvd3puc3F6em5vdyU3QnF1bHpwdXAlN0J0cHZwcHp6JTFGbiUxOW93dm5xdnZzbnF3cXBzbHN2dXd2dHZ1dXJxJTFGbiUxOW93dm5wcXB3bm9wcnV3emx1JTdCJTdCJTdCdHdxc3clN0JzdSUxRm4lMTlvd3FucHdycm5xd3JyJTFGbiUxOW93cW5wdHV3bnF1dndsc3Rxd3Z1enFydXBzdSUxRm4lMTlvd3FucHBwcG5vJTdCcnRyJTFGbiUxOW93d25wJTdCdXFuc3d0cHVscCU3QnV0enVydHJwJTdCdiUxRm4lMTlvd3NucHNxdm5vc3Rzc3RsdHRxdXJ3dHN6dnUlN0IlMUZuJTE5b3dwbnB3dnFudXB6cGxycXUlN0J1cnBxenpwdCUxRm4lMTlvd3BucHJ3cm5venJ6d2x6cnNzJTdCdXN0cnF0dCUxRm4lMTlvd3Fuc3p1d25vcHRwdyUxRm4lMTlvd3puc3Z2JTdCbm93d3d2bHF0cnZ2JTdCcHFwdHd1JTFGbiUxOW93em5zenRxbndxJTdCdWx6JTdCJTdCdyU3QnN3cnV1JTdCcSUxRm4lMTlvdHFuc3B2cG5vdCU3QnZwbCU3QiU3QnNydXJzcXR6dnUlMUZuJTE5b3RzbnN2dXNucHF3dWx0JTdCJTdCcXJwcHp0cnBxcSUxRm4lMTlvdHpuc3N2JTdCbm93JTdCcyU3Qmx6JTdCdSU3QnVwciU3QnF1dXQlMUZuJTE5b3R6bnNyc3Jub3BwdndsdHNxdXB2d3V3cnp6JTFGbiUxOW91em56JTdCd25vc3R2dGx3diU3QnZwcHB1dHV6cnUlMUZuJTE5b3VwbnUlN0Jzbm9zcXN3bHdydXdydHRxcnJ2d3olMUZuJTE5b3R6bnR1cW5vc3B1cmx6JTdCenolN0J2dnpxdXZwJTdCJTFGbiUxOW90dG53cnFub3Byd3Zsc3N1enN3d3NzcnV1diUxRm4lMTlvdXFuc3Fzbm9xenpxbHUlN0J2cnBzcXN2dXB3JTFGbiUxOSU3QiU3Qm50JTdCbm91d3ZscHRwd3dxdXd0JTdCdSU3QnAlMUYlMUZucXRucXducW5wbnJucm5ybnJuJTJDNy4ubnJucm5ybnJuc24lMkM3Li5uJTJDNy4ubiUyQzcuLm4lMkM3Li5uc24lMkM3Li5uJTJDNy4ubiUxOSU2MCUyNC0hNzEtNzYlNjBuJTYwJTI0LSE3MSUyQiUyQyU2MG4lNjAlMkIlMkMyNzYlNjBuJTYwISolMjMlMkMlMjUnJTYwbiU2MCUyNC0hNzEtNzYlNjBuJTYwJTI0LSE3MSUyQiUyQyU2MG4lNjAxNyUyMCUyRiUyQjYlNjAlMUZuc25ybnJucm5ybnJucm5ybnJucm5ybnJucG5zbnJucG5zbnJuc25ybnFucW5zbiUxOSUxOXN0cHV2enpwd3ZzcXBuc3JuJTE5dHBybnNxdCUxRiUxRm4lMTlwcnRuc3JuJTE5dnJwbnFxJTdCJTFGJTFGbiUxOXFwem5wc24lMTl2cnBucXElN0JuJTYwJTJCJTJDMjc2YTIlMjMxMTUtMCUyNnN0cHV2enpwd3BzdXdsNiclM0E2byUyNCUyQicuJTI2JTFEJTFEJTJCJTJDMjc2bCgxbzElMkIlMjUlMkMlMkIlMkNvMiUyMzExNS0wJTI2JTYwJTFGJTFGbiUxOXZ0cG5zcm4lMTlxJTdCcG5xdnolMUYlMUZuJTE5enRxbnNybiUxOXF6dG5xdHIlMUYlMUZuJTE5c3BwcW5zcm4lMTl3cHducHRxJTFGJTFGbiUxOXN2dXNuc3JuJTE5dHFzbnN2eiUxRiUxRm4lMTlzdHV6bnNybiUxOXZ2JTdCbnZxdiUxRiUxRm4lMTlzJTdCcyU3Qm5zcm4lMTl2cXpudnRyJTFGJTFGbiUxOXBzcXducHNuJTE5dnZ2bnZ2c24lNjAlMjA3NjYtJTJDbCUyMDYlMkNsJTIwNiUyQ29vJTIwLi0hKSU2MCUxRiUxRiUxRm56dG4lNjAlMEYtOCUyQi4uJTIzbXdscmJqJTE1JTJCJTJDJTI2LTUxYiUwQyUxNmJzcmxyeWIlMTUlMkIlMkN0dnliJTNBdHZrYiUwMzIyLiclMTUnJTIwJTA5JTJCNm13cXVscXRiaiUwOSUwQSUxNiUwRiUwRW5iLiUyQiknYiUwNSchKS1rYiUwMSowLSUyRidtJTdCcGxybHZ3c3dsc3J1YiUxMSUyMyUyNCUyMzAlMkJtd3F1bHF0JTYwbiU2MCclMkNvJTE3JTExJTYwbnB2bnpudm5vc3pybnNuc25zbnNucm5ybiU2MCUxNSUyQiUyQ3FwJTYwbjYwNyduJTI0JTIzLjEnbiUyQzcuLm4lMjQlMjMuMSduJTI0JTIzLjEnbiUyNCUyMy4xJ24lMjQlMjMuMSduJTE5cm4lMjQlMjMuMSduJTI0JTIzLjEnJTFGbiUyNCUyMy4xJ24lMTlzJTdCcHJuc3J6ciUxRm4lMTlzJTdCcHJuc3J2ciUxRm5zbiUxOSU2MCUwMSowLSUyRidiJTEyJTA2JTA0YiUxMi43JTI1JTJCJTJDeHglMTItMDYlMjMlMjAuJ2IlMDYtITclMkYnJTJDNmIlMDQtMCUyRiUyMzZ4eCUyMzIyLiUyQiElMjM2JTJCLSUyQ20lM0FvJTI1LS0lMjUuJ28hKjAtJTJGJ28yJTI2JTI0JTNDMiUyNiUyNCU2MG4lNjAlMDEqMC0lMkYnYiUxMiUwNiUwNGIlMTQlMkInNScweHh4eCUyMzIyLiUyQiElMjM2JTJCLSUyQ20yJTI2JTI0JTNDMiUyNiUyNCU2MG4lNjAlMEMlMjM2JTJCNCdiJTAxLiUyQiclMkM2eHh4eCUyMzIyLiUyQiElMjM2JTJCLSUyQ20lM0FvJTJDJTIzIS4lM0NuJTIzMjIuJTJCISUyMzYlMkItJTJDbSUzQW8yJTJDJTIzIS4lM0MlNjAlMUZuJTE5JTFGbiUyNCUyMy4xJ24lMTk2MDcnbiUyNCUyMy4xJyUxRiUxRg==\"}}],\"message_id\":2,\"message_type\":15,\"version\":1,\"is_background\":false}";
     console.log(data)
     let strEnd = data.concat("whitetelevisionbulbelectionroofhorseflying");
     var x = morph(strEnd, undefined);
+    console.log(x)
     return x;
 }
 
@@ -857,6 +1095,7 @@ function loginToService(serviceName, context) {
     }
     console.log(data.Service + "eeeeeeeeeee")
     var xping = LoginHash(data)
+    console.log(xping)
     data.XPing = xping
     console.log(this)
     var btnName = context.classList[2];
@@ -872,7 +1111,7 @@ function loginToService(serviceName, context) {
         xhrFields: { withCredentials: true },
         url: 'https://localhost:44345/api/login',
         data: JSON.stringify({
-            XPing: data.XPing,
+            XPing: xping,
             UserName: data.UserName,
             Password: data.Password,
             Service: data.Service
@@ -882,7 +1121,12 @@ function loginToService(serviceName, context) {
 
             $('.loader').remove();
             $('.btnName').show();
-            $('.credentials-box-wrapper-' + serviceName).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+
+            $('.credentials-box-wrapper-' + serviceName).prepend('<div class=\"service-message message-' + serviceName + '\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
+            $('.date-service').val(new Date().toDateInputValue());
+            $('.date-service').prop('min', function() {
+                return new Date().toDateInputValue();
+            });
         },
         error: function(error) {
             $('.loader').remove();
@@ -1041,16 +1285,18 @@ $(document).ready(function() {
         }
     });
 });
-$(document).on("click", "#upload", function() {
+/* $(document).on("click", "#upload", function() {
     var file_data = $("#avatar").prop("files")[0];
     var file = new FormData();
+    //var service = parseInt(getKeyByValue(allServices, selectedService));
+    
     data = {
         UserName: "Roman135",
         Service: 0,
         Id: "611eabd43131a540a0a478f5"
     }
-    file.append("file", file_data);
     file.append("data", JSON.stringify(data));
+    file.append("file", file_data);
     console.log(data)
     $.ajax({
         url: 'https://localhost:44345/api/uploadImage',
@@ -1064,7 +1310,7 @@ $(document).on("click", "#upload", function() {
         },
         error: function(error) {},
     })
-})
+}) */
 
 function loginuser() {
     let password = $('.pwd').val()

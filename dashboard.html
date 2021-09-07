@@ -12,41 +12,97 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <div class="logo-hearts">
-                <img class="logo-big" src="/media/heart.png" alt="" />
-                <img class="logo-small" src="/media/heart.png" alt="" />
+    <div class="dashboard-wrapper">
+        <header class="side-navbar">
+            <div class="side-logo" onclick="window.location='https:/\/localhost'">
+                <div class="logo-hearts">
+                    <img class="logo-big" src="/media/heart.png" alt="" />
+                    <img class="logo-small" src="/media/heart.png" alt="" />
+                </div>
+                <h1 class="s-auto small small-side">
+                    Auto
+                </h1>
+                <h1 class="s-lover small small-side">
+                    Lover
+                </h1>
             </div>
-            <h1 class="s-auto small">
-                Auto
-            </h1>
-            <h1 class="s-lover small">
-                Lover
-            </h1>
-        </div>
-        <nav class="nav-bar ">
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="inner-sidebar">
+                <img class="profile-picture" src="media/jenia.jpg" alt="profile-picture" />
+                <div class="username-age-container">
+                    <h3 id='username'>Jenia sterlin,</h3>
+                    <h3 id='age'>28</h3>
+                </div>
+                <nav class="side-nav-bar ">
+                    <ol class="side-nav-bar-items">
+                        <li class="all-plans side-nav-item">
+                            <a class="side-nav-text" href="/checkOut.html">All Plans</a>
+                        </li>
+                        <li class="your-plans side-nav-item">
+                            <a class="side-nav-text" href="#">Your Plans</a>
+                        </li>
+                        <li class="stats side-nav-item">
+                            <a class="side-nav-text" href="#">Statistics</a>
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <ol class="nav-bar-items">
-                <li class="home nav-item">
-                    <a href="/index.html">Home</a>
-                </li>
-                <li class="what-we-do nav-item">
-                    <a href="/index.html">What do we do?</a>
-                </li>
-                <li class="contact nav-item">
-                    <a href="/index.html">Contact</a>
-                </li>
+        </header>
+        <div class="main-wrapper">
+            <div class="main-container">
+                <div class="welcome-text">
+                    <h1>Welcome to your Dashboard!</h1>
+                </div>
+                <div class="info-box">
+                    <p class="info-text">Here you can log in to your existing services such as Badoo, OkCupid or Tinder and manage their settings or purchase one of our plans for liking automation, Enjoy!</p>
+                </div>
+                <div class="interface-box">
+                    <div class="interface-container">
+                        <div class="services-multiple">
+                            <div class="imgwrapper-badoo img-warpper">
+                                <img src="/media/badoo.png " alt="badoo" class="services-single services-badoo" />
+                            </div>
+                            <div class="imgwrapper-okcupid img-warpper">
 
-            </ol>
-        </nav>
-    </header>
-    <h1>dashboard</h1>
+                                <img src="/media/okcupid.png" alt="okcupid" class="services-single  services-okcupid" />
+                            </div>
+                            <div class="imgwrapper-tinder img-warpper">
+                                <img src="/media/tinder.png " alt="tinder " class="services-single services-tinder" />
+
+                            </div>
+                        </div>
+                        <div class="authenticated-service">
+                            <div class="pictures-wrapper">
+                                <div class="pictures-container">
+                                </div>
+                                <div class="picture-box">
+                                    <img src="media/camera.png" alt="" type="file" class="add-picture">
+                                    <input id="avatar" type="file" name="avatar" />
+                                    <p>add picture</p>
+                                </div>
+                            </div>
+
+                            <textarea maxlength="500" class="about-me-text-box"></textarea>
+                            <div class="update-btn">
+                                <p class="update-btn-text">Update</p>
+                            </div>
+                        </div>
+                        <div class="service">
+                            <div class="inner-service">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="rights" style="margin-top:0px">
+            &copy; All rights reserved to 'AutoLover' 2021.
+        </div>
+    </footer>
 
 </body>
+
 
 </html>
