@@ -5,15 +5,15 @@
         if (!executed) {
             executed = true;
             $.ajax({
-                url: 'https://localhost:44345/authUser',
+                url: EXTERNAL_API+'/authUser',
                 type: "POST",
                 dataType: "text",
                 xhrFields: { withCredentials: true },
                 success: function(response) {
                     sessionStorage.setItem("username", response.split('@')[0]);
-                    if (location.href == "https://localhost/dashboard.html") {
+                    if (location.href == HOST_API+"/dashboard.html") {
                         $.ajax({
-                            url: 'https://localhost:44345/api/authServices',
+                            url: EXTERNAL_API+'/api/authServices',
                             type: "POST",
                             dataType: "JSON",
                             xhrFields: { withCredentials: true },

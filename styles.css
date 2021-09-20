@@ -65,6 +65,16 @@ body {
     border-radius: 5px;
 }
 
+.dim {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .3;
+    top: 0;
+    left: 0;
+}
+
 .login-box {
     flex-shrink: 1;
     margin: 0 auto;
@@ -75,6 +85,9 @@ body {
     border: 1px solid #E4E4E4;
     box-shadow: 1px 5px 4px rgba(0, 0, 0, 0.37);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 
 .visa-img {
@@ -126,6 +139,7 @@ body {
 }
 
 .services {
+    margin-bottom: 28px;
     margin-top: 28px;
     display: flex;
     flex-direction: row;
@@ -140,7 +154,6 @@ body {
     width: 221px;
     height: 309px;
     background: #F9FCFF;
-    border: 1px solid #E4E4E4;
     box-shadow: 0px 4px 11px rgb(0 0 0 / 11%);
 }
 
@@ -178,6 +191,8 @@ body {
 
 .service-mini-logo {
     height: 50px;
+    width: 95px;
+    margin-top: 44px;
 }
 
 .order-line {
@@ -193,6 +208,10 @@ body {
     justify-content: flex-start;
     place-content: center;
     width: 210px;
+}
+
+.payment-section-items {
+    width: 310px;
 }
 
 .text-box-service-password {
@@ -321,7 +340,7 @@ body {
     color: #030E12;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transform: rotate(-10.84deg);
-    z-index: 100;
+    z-index: 99;
 }
 
 .h-small {
@@ -335,12 +354,12 @@ body {
     color: #030E12;
     text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     transform: rotate( 35deg);
-    z-index: 100;
+    z-index: 99;
 }
 
 .hearts {
     transform: rotate( 21deg);
-    z-index: 100;
+    z-index: 99;
     margin-top: 45px;
     margin-left: 350px;
     position: absolute;
@@ -380,7 +399,6 @@ body {
     color: #030E12;
     text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     transform: rotate( 44deg);
-    z-index: 100;
     top: 9px;
 }
 
@@ -588,10 +606,16 @@ html {
 .add-more-wrapper {
     margin-top: 30px;
     margin-bottom: 30px;
+    margin-left: 25px;
     width: 300px;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.login-section {
+    text-align: -webkit-center;
 }
 
 .date-service {
@@ -683,6 +707,19 @@ h1 {
     text-align: center;
     color: #030E12;
     line-height: 30px;
+}
+
+.for-text {
+    font-weight: normal;
+    margin-left: 144px;
+    margin-top: -40px;
+    margin-right: 199px;
+}
+
+.repeat {
+    margin-right: 97px;
+    margin-top: -18px;
+    margin-left: 127px;
 }
 
 .what-box {
@@ -840,6 +877,7 @@ h1 {
 @keyframes pop {
     50% {
         transform: translateY(-2px);
+        transform: scale3d();
     }
 }
 
@@ -885,7 +923,6 @@ h1 {
 .main-wrapper-checkout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     gap: 20px 20px;
     grid-auto-flow: row;
     grid-template-areas: "services-wrapper order-wrapper" "checkout-box order-wrapper";
@@ -904,7 +941,6 @@ h1 {
     text-align: -webkit-center;
     flex-shrink: 1;
     margin: 0 auto;
-    height: 369px;
     width: 912px;
     background: #F9FCFF;
     border: 1px solid #E4E4E4;
@@ -963,9 +999,17 @@ h5 {
     font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+select {
+    font-family: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .service-swipes,
 .payment-value {
     margin-bottom: 0px;
+}
+
+.service-price {
+    margin-top: 61px;
 }
 
 a {
@@ -1153,12 +1197,26 @@ hr.line {
 }
 
 .service-remove {
-    margin-top: 17px;
+    margin-top: 58px;
     cursor: pointer;
 }
 
 .grid-boxes {
     box-shadow: 0px 4px 11px rgb(0 0 0 / 11%);
+}
+
+.tutorial {
+    /* for IE */
+    /* for real browsers */
+    box-shadow: 0 0 0 500vmax rgba(0, 0, 0, 0.3);
+    border: 0px solid #E4E4E4;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.swipes-dropdown:hover,
+.repeat:hover {
+    cursor: pointer;
 }
 
 .side-navbar {
@@ -1339,6 +1397,29 @@ hr.line {
     transform: matrix(0.62, 0.76, -0.82, 0.61, 0, 7);
 }
 
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.arrow:hover {
+    border: solid rgb(255, 25, 152);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 1px;
+    width: 15px;
+    height: 15px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    cursor: pointer;
+}
+
 .add-picture {
     margin-top: 15%;
     height: 50px;
@@ -1418,6 +1499,89 @@ hr.line {
     cursor: pointer;
 }
 
+.tutorial-text {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-align: start;
+    padding-left: 5px;
+    width: 370px;
+}
+
+.tutorial-text-2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-align: start;
+    padding-left: 5px;
+    width: 312px;
+}
+
+.tutorial-text-3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-align: start;
+    padding-left: 5px;
+    width: 312px;
+}
+
+.tutorial-box:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.01);
+}
+
+.tutorial-box:not(hover) {
+    transition: all .2s ease-in-out;
+    transform: scale(1.0);
+}
+
+.tutorial-box-1 {
+    position: absolute;
+    color: rgb(0, 0, 0);
+    width: 405px;
+    height: 100px;
+    z-index: 100;
+    top: 68px;
+    background: #F9FCFF;
+    padding-right: 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tutorial-box-2 {
+    position: absolute;
+    color: rgb(0, 0, 0);
+    width: 350px;
+    height: 100px;
+    z-index: 100;
+    top: 68px;
+    background: #F9FCFF;
+    padding-right: 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tutorial-box-3 {
+    position: absolute;
+    color: rgb(0, 0, 0);
+    width: 350px;
+    height: 100px;
+    z-index: 100;
+    top: 450px;
+    background: #F9FCFF;
+    padding-right: 2px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tutorial-next-btn {
+    background: red;
+    border-radius: 25px 25px;
+    width: 25px;
+    height: 25px;
+}
+
 @media only screen and (max-width: 1400px) {
     .main-wrapper-checkout {
         width: 100%;
@@ -1425,16 +1589,113 @@ hr.line {
         display: grid;
         grid-template-columns: 1fr;
         gap: 20px 0px;
-        grid-template-areas: "services-wrapper services-wrapper" "checkout-wrapper checkout-wrapper" "order-wrapper order-wrapper";
+        grid-template-areas: "services-wrapper services-wrapper" "order-wrapper order-wrapper" "checkout-wrapper checkout-wrapper";
     }
     .order-wrapper,
     .services-wrapper {
         width: 912px;
         margin: 0 auto;
     }
+    .how-to {
+        margin-bottom: 140px;
+    }
+    .tutorial-box {
+        position: absolute;
+        color: rgb(0, 0, 0);
+        width: 405px;
+        height: 100px;
+        z-index: 100;
+        top: 155px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .tutorial-box-2 {
+        position: absolute;
+        color: rgb(0, 0, 0);
+        width: 350px;
+        height: 100px;
+        z-index: 100;
+        top: 545px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .tutorial-box-3 {
+        position: absolute;
+        color: rgb(0, 0, 0);
+        width: 350px;
+        height: 100px;
+        z-index: 100;
+        top: 980px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
 }
 
 @media only screen and (max-width: 1100px) {
+    .tutorial {
+        box-shadow: 0 0 0 250vmax rgb(0 0 0 / 30%);
+        border: 0px solid #E4E4E4;
+        border-radius: 5px;
+        z-index: 100;
+    }
+    .tutorial-box-3 {
+        justify-content: space-around;
+        position: absolute;
+        color: rgb(0, 0, 0);
+        width: 350px;
+        height: 100px;
+        z-index: 100;
+        top: 1821px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .checkout-wrapper {
+        width: 400px;
+    }
+    .tutorial-box-2 {
+        justify-content: space-around;
+        position: absolute;
+        color: rgb(0, 0, 0);
+        width: 350px;
+        height: 100px;
+        z-index: 100;
+        top: 1386px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .grid-boxes {
+        width: 400px;
+    }
+    .how-to {
+        margin-bottom: 190px;
+    }
+    .tutorial-box {
+        position: absolute;
+        color: rgb(0, 0, 0);
+        height: 100px;
+        z-index: 100;
+        top: 180px;
+        background: #F9FCFF;
+        padding-right: 2px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
     .services {
         flex-direction: column;
     }
@@ -1465,7 +1726,7 @@ hr.line {
     }
     .main-wrapper-checkout {
         place-content: center;
-        height: 2033px;
+        height: 100%;
     }
     .services-wrapper {
         height: 100%;
@@ -1494,10 +1755,6 @@ hr.line {
     .h-line {
         width: 290px;
         height: 0px;
-    }
-    .grid-boxes {
-        box-shadow: 0px 4px 11px rgb(0 0 0 / 11%);
-        width: 400px;
     }
     .sign {
         margin: 0 auto;
@@ -1617,6 +1874,9 @@ hr.line {
 }
 
 @media only screen and (max-width: 600px) {
+    .email-register {
+        margin-right: 50px;
+    }
     .header {
         font-size: 2rem;
         margin-left: 50px;
@@ -1629,7 +1889,7 @@ hr.line {
     .login-box {
         transition: all .3s ease-in-out;
         margin-bottom: 50px;
-        height: 630px;
+        height: 100%;
         width: 355px;
     }
     .email-login {
