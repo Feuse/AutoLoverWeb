@@ -1,19 +1,21 @@
 var isToggle;
+var userId;
+var sessionId;
 var value;
 var url;
 var orderHeight;
 var loginv;
 var checkout;
+var authenticatedServices = [];
 var clickServicesList = [];
 var servicesData = [];
 var dict = [];
-var servicesNames = [];
 var services = ["badoo", "tinder", "okcupid"];
 const swipes = localStorage.getItem("swipes");
 var selectedService;
 var seenTutorial;
 var redShadowValues = "rgb(227 25 25) 0px 0px 20px";
-const HOST_API = "https://localhost";
+
 const EXTERNAL_API = "https://localhost:44345";
 const TUTORIAL_ONE = "First, Log into the dating apps you wish to automate & click on them to add it to your cart!";
 const TUTORIAL_TWO = "Then choose the ammount & duration, or remove and start over!";
@@ -22,8 +24,7 @@ const TUTORIAL_INTRO = "Welcome to our quick 3 step tutorial, let's begin!";
 
 (function setServicesArray() {
 
-    servicesNames = ["badoo", "tinder", "okcupid"];
-    for (let val of servicesNames) {
+    for (let val of services) {
         dict[val] = {
             counter: 0,
             totalSwipes: 0,
@@ -43,7 +44,6 @@ $(document).ready(function() {
     if (seenTutorial == "False") {
         StartTutorial();
     }
-
 })
 
 function slowScroll(id, minus) {
@@ -51,7 +51,6 @@ function slowScroll(id, minus) {
             scrollTop: $(id).offset().top - minus
         },
         'slow');
-    console.log('scrolling')
 }
 
 function StartTutorial() {
@@ -172,8 +171,6 @@ $(document).ready(function() {
 
     // add service
     try {
-
-
         container.addEventListener('click', function(e) {
 
             var k;
@@ -462,17 +459,17 @@ function priceGenerator(totalSwipes) {
 
         } else if (checkout > -1 && loginv == -1) {
 
-            location.href = HOST_API + "/index.html";
+            location.href = "/index.html";
         }
         //dashboard without a session
         else if (dashboard > -1) {
-            location.href = HOST_API + "/index.html";
+            location.href = "/index.html";
         }
     }
     //session exists
     if (!(!value)) {
         if (loginv > -1) {
-            location.href = HOST_API + "/index.html";
+            location.href = "/index.html";
         }
     }
 
@@ -489,8 +486,6 @@ var allServices = {
 };
 
 
-
-var authenticatedServices = [];
 $(document).ready(function() {
     if (checkout > -1) {
         // var str = e.target.classList[0];
@@ -639,7 +634,7 @@ $(document).ready(function() {
                     // $('.service').prepend('<div class="inner-service"><img class="service-img " alt=" " src="/media/' + serviceName + '.png "> <div ></div><div class=\"service-credentials service-credentials-' + serviceName + '\"> <p class=\"username-service\">Username</p> <input maxlength=\"50\" type=\"email\" class=\"text-box-service-email \" /> <div class=\"break\"></div> <p class=\"password-service\">Password</p> <input maxlength=\"50\" type=\"password\" class=\"text-box-service-password\" /> <div class=\"break\"></div> </div> <div class=\"btn btn-login-service login-' + serviceName + ' disable-select\"> <p class=\"login-text-service\" onclick=\"\">Login</p> </div></div>')
                     //$('.service').show();
 
-                    location.href = HOST_API + "/checkOut.html";
+                    location.href = "/checkOut.html";
 
                     /* $('.service').on('click', function(e) {
                         $('.error-service-login').remove();
@@ -865,56 +860,6 @@ function readCookie(name) {
     }
     return null;
 }
-
-$(document).ready(function() {
-    if (!(!value)) {
-        setLoggedInState();
-    }
-});
-
-function setLoggedInState() {
-    $(".login").remove();
-    $(".signup").remove();
-    $(".nav-bar-items").append("<li class=\"dashboard nav-item\"> <a href=\"\/dashboard.html\">Dashboard<\/a> <\/li>");
-    if (isToggle) {
-        $("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a> <\/li>").insertBefore(".what-we-do");
-    } else {
-        $(".nav-bar-items").append("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a> <\/li>")
-    }
-    $(".nav-bar-items").css("margin-left", "35%")
-    $(".user").css("cursor", "default")
-}
-
-function Badoo() {
-    this.type = "badoo";
-    this.html = "<h1>test</h1>"
-}
-
-function Tinder() {
-    this.type = "tidner";
-    this.html = "<h1>test</h1>"
-}
-
-function OkCupid() {
-    this.type = "okcupid";
-    this.html = "<h1>test</h1>"
-}
-
-function ServiceFactory() {
-    this.create = (type) => {
-        switch (type) {
-            case "badoo":
-                return new Badoo();
-            case "tinder":
-                return new Tinder();
-            case "okcupid":
-                return new OkCupid();
-            default:
-                break;
-        }
-    };
-}
-
 $(document).ready(function() {
     var ele = document.getElementById(".hamburger");
     var howto = document.querySelector(".how-to");
@@ -964,6 +909,72 @@ $(document).ready(function() {
     }
 });
 
+$(document).ready(function() {
+    if (value) {
+        setLoggedInState();
+    }
+});
+
+function setLoggedInState() {
+    windowsize = $(window).width();
+
+    if (value) {
+
+        $(".login").remove();
+        $(".signup").remove();
+
+        $(".nav-bar-items").append("<li class=\"dashboard nav-item\"> <a href=\"\/dashboard.html\">Dashboard<\/a> <\/li>");
+        if (windowsize < 1100) {
+            $("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a> <\/li>").insertBefore(".what-we-do");
+            $(".nav-bar-items").append("<li class=\"logout\"><a>Logout<\/a><\/li>")
+        } else {
+            $(".nav-bar-items").append("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a><\/li>")
+            $(".nav-bar-items").append("<li class=\"logout\"><a>Logout<\/a><\/li>")
+        }
+        $(".nav-bar-items").css("margin-left", "35%")
+        $(".user").css("cursor", "default")
+    } else {
+
+        $(".user").remove();
+        $(".logout").remove();
+        $(".nav-bar-items").append('<li class="login nav-item"><a href="/login.html">Login</a></li>');
+        $(".nav-bar-items").append('<li class="signup nav-item"><a href="/login.html">Sign up</a></li>');
+
+    }
+}
+
+function Badoo() {
+    this.type = "badoo";
+    this.html = "<h1>test</h1>"
+}
+
+function Tinder() {
+    this.type = "tidner";
+    this.html = "<h1>test</h1>"
+}
+
+function OkCupid() {
+    this.type = "okcupid";
+    this.html = "<h1>test</h1>"
+}
+
+function ServiceFactory() {
+    this.create = (type) => {
+        switch (type) {
+            case "badoo":
+                return new Badoo();
+            case "tinder":
+                return new Tinder();
+            case "okcupid":
+                return new OkCupid();
+            default:
+                break;
+        }
+    };
+}
+
+
+
 var returnUrl;
 $(document).ready(function() {
     $(".500").on('click', function(event) {
@@ -972,10 +983,10 @@ $(document).ready(function() {
 
         event.preventDefault();
         if (!(!value)) {
-            location.href = HOST_API + "/checkOut.html";
+            location.href = "/checkOut.html";
         } else {
 
-            location.href = HOST_API + "/login.html?returnUrl=/checkOut.html";
+            location.href = "/login.html?returnUrl=/checkOut.html";
         }
     });
 });
@@ -986,10 +997,10 @@ $(document).ready(function() {
 
         event.preventDefault();
         if (!(!value)) {
-            location.href = HOST_API + "/checkOut.html";
+            location.href = "/checkOut.html";
         } else {
 
-            location.href = HOST_API + "/login.html?returnUrl=/checkOut.html";
+            location.href = "/login.html?returnUrl=/checkOut.html";
         }
     });
 });
@@ -1001,10 +1012,10 @@ $(document).ready(function() {
 
         event.preventDefault();
         if (!(!value)) {
-            location.href = HOST_API + "/checkOut.html";
+            location.href = "/checkOut.html";
         } else {
 
-            location.href = HOST_API + "/login.html?returnUrl=/checkOut.html";
+            location.href = "/login.html?returnUrl=/checkOut.html";
         }
     });
 });
@@ -1016,10 +1027,10 @@ $(document).ready(function() {
 
         event.preventDefault();
         if (!(!value)) {
-            location.href = HOST_API + "/checkOut.html";
+            location.href = "/checkOut.html";
         } else {
 
-            location.href = HOST_API + "/login.html?returnUrl=/checkOut.html";
+            location.href = "/login.html?returnUrl=/checkOut.html";
         }
     });
 });
@@ -1035,6 +1046,29 @@ function readCookie(name) {
     }
     return null;
 }
+
+function deleteCookie(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+$(document).ready(function() {
+    $('.logout').on('click', function() {
+        $.ajax({
+            xhrFields: { withCredentials: true },
+            type: "POST",
+            url: EXTERNAL_API + '/logout',
+            contentType: "application/json",
+            success: function(response) {
+                value = undefined;
+                deleteCookie('username');
+                deleteCookie('tutorial');
+                setLoggedInState();
+            },
+            error: function(error) {
+
+            }
+        });
+    })
+});
 
 $(document).ready(function() {
     $(".login-text").on('click', function(event) {
@@ -1059,11 +1093,11 @@ $(document).ready(function() {
                 var newurl = new URL(location.href);
                 newurl = newurl.searchParams.get("returnUrl");
                 if (!newurl) {
-                    window.location.href = HOST_API + "/dashboard.html"
                     setLoggedInState();
+                    window.location.href = "/dashboard.html"
                 } else {
                     console.log(newurl);
-                    location.href = HOST_API + "/" + newurl;
+                    location.href = "/" + newurl;
                 }
 
             },
@@ -1077,14 +1111,8 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
-    // Add smooth scrolling to all links
-    $("a").on('click', function(event) {
-        document.getElementById('contact').scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+
+
 
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
@@ -1166,17 +1194,13 @@ function registerToWebsite() {
         contentType: "application/json",
         success: function(response) {
             alert("here")
-            location.href = HOST_API + "/dashboard.html";
+            location.href = "/dashboard.html";
         },
         error: function(error) {
             console.log(error);
         }
     });
 }
-
-var userId;
-var sessionId;
-
 
 
 function getImages() {
@@ -1284,53 +1308,3 @@ $(document).ready(function() {
         }
     });
 });
-/* $(document).on("click", "#upload", function() {
-    var file_data = $("#avatar").prop("files")[0];
-    var file = new FormData();
-    //var service = parseInt(getKeyByValue(allServices, selectedService));
-    
-    data = {
-        UserName: "Roman135",
-        Service: 0,
-        Id: "611eabd43131a540a0a478f5"
-    }
-    file.append("data", JSON.stringify(data));
-    file.append("file", file_data);
-    console.log(data)
-    $.ajax({
-        url: EXTERNAL_API+'/api/uploadImage',
-        type: "POST",
-        dataType: 'json',
-        data: file,
-        processData: false,
-        contentType: false,
-        success: function(msg) {
-
-        },
-        error: function(error) {},
-    })
-}) */
-
-function loginuser() {
-    let password = $('.pwd').val()
-    let username = $('.username').val()
-    $.ajax({
-        type: "POST",
-        url: HOST_API + '/login',
-        data: JSON.stringify({
-            UserName: username,
-            Password: password
-        }),
-        dataType: "json",
-        contentType: "application/json",
-        success: function(response) {
-            userId = response.user_id;
-            sessionId = response.session_id;
-            console.log(response);
-            console.log(response.user_id);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-}
