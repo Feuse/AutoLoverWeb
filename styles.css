@@ -75,11 +75,16 @@ body {
     left: 0;
 }
 
+.disabler {
+    opacity: 0.5;
+}
+
 .login-box {
     flex-shrink: 1;
     margin: 0 auto;
     margin-top: 100px;
-    height: 625px;
+    height: 100%;
+    min-height: 620px;
     width: 500px;
     background: #F9FCFF;
     border: 1px solid #E4E4E4;
@@ -142,7 +147,18 @@ body {
     margin-bottom: 28px;
     margin-top: 28px;
     display: flex;
+    justify-content: space-around;
     flex-direction: row;
+}
+
+.header-text-wrapper{
+    background-image: url('/media/Data\ extraction-bro.png');
+   
+    background-size: 50%;
+    position: relative;
+
+    background-position: right -0px top 0px;
+    background-repeat: no-repeat;
 }
 
 .service {
@@ -268,16 +284,12 @@ body {
     transition: all .2s ease-in-out;
     margin-left: 100px;
     margin-right: 608px;
-    margin-bottom: 3em;
-    height: 69px;
-    left: 455px;
-    top: 380px;
     font-style: normal;
     font-weight: bold;
     font-size: 80px;
     text-align: left;
     color: #030E12;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 
 .bg-color {
@@ -593,8 +605,12 @@ html {
     margin: 0 auto;
 }
 
-.service:hover,
-.service:active {
+.service-badoo:hover,
+.service-badoo:active,
+.service-tinder:hover,
+.service-tinder:active,
+.service-okcupid:hover,
+.service-okcupid:active {
     box-shadow: 5px 10px 10px 1px rgb(0 0 0 / 25%);
     cursor: default;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -614,7 +630,8 @@ html {
     flex-wrap: wrap;
 }
 
-.login-section {
+.login-section,
+.register-section {
     text-align: -webkit-center;
 }
 
@@ -1209,7 +1226,6 @@ hr.line {
     /* for IE */
     /* for real browsers */
     box-shadow: 0 0 0 500vmax rgba(0, 0, 0, 0.3);
-    border: 0px solid #E4E4E4;
     border-radius: 5px;
     z-index: 100;
 }
@@ -1286,7 +1302,20 @@ hr.line {
     box-shadow: 0 1px 4px 2px rgb(0 0 0 / 25%);
     border-radius: 5px;
     width: 901px;
-    height: 560px;
+    height: 100%;
+    min-height: 635px;
+    padding-bottom: 10px;
+}
+
+.valid {
+    z-index: 1;
+    position: absolute;
+    height: 35px;
+    background: transparent;
+}
+
+.interface-container {
+    text-align: -webkit-center;
 }
 
 .services-single {
@@ -1295,7 +1324,34 @@ hr.line {
     cursor: pointer;
 }
 
-.services-single:hover {
+.about-me {
+    -webkit-box-align: center;
+    width: 195px;
+}
+
+.cancel {
+    position: absolute;
+    display: inline;
+    cursor: pointer;
+}
+
+.about-me-title {
+    display: -webkit-inline-box;
+    margin-right: 29px;
+    font-weight: lighter;
+}
+
+.update-btn-about-me {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 35px;
+    height: 35px;
+    display: -webkit-inline-box;
+}
+
+.update-btn-about-me:hover {
     box-shadow: 5px 10px 10px 1px rgb(0 0 0 / 25%);
     cursor: default;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -1304,18 +1360,27 @@ hr.line {
     cursor: pointer;
 }
 
-.services-single:not(:hover) {
+.about-me-text {
+    margin-bottom: 0px;
+    margin-right: 29px;
+}
+
+.img-warpper:hover {
+    box-shadow: 5px 10px 10px 1px rgb(0 0 0 / 25%);
+    cursor: default;
     -webkit-font-smoothing: subpixel-antialiased;
     transition: all .2s ease-in-out;
-    transform: scale(1);
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 .services-multiple {
     display: flex;
     /* margin: 0 auto; */
     justify-content: space-evenly;
-    margin-top: 25px;
-    margin-bottom: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 50px 50px 25px 50px;
+    padding-bottom: 20px;
 }
 
 .welcome-text {
@@ -1337,11 +1402,14 @@ hr.line {
 }
 
 .pictures-wrapper {
+    padding-bottom: 20px;
+    width: 800px;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .pictures-container {
@@ -1521,16 +1589,6 @@ hr.line {
     text-align: start;
     padding-left: 5px;
     width: 312px;
-}
-
-.tutorial-box:hover {
-    transition: all .2s ease-in-out;
-    transform: scale(1.01);
-}
-
-.tutorial-box:not(hover) {
-    transition: all .2s ease-in-out;
-    transform: scale(1.0);
 }
 
 .tutorial-box-1 {

@@ -1,7 +1,7 @@
 var isToggle;
 var userId;
 var sessionId;
-var value;
+var nameValue;
 var url;
 var orderHeight;
 var loginv;
@@ -10,13 +10,12 @@ var authenticatedServices = [];
 var clickServicesList = [];
 var servicesData = [];
 var dict = [];
-var services = ["badoo", "tinder", "okcupid"];
+const services = ["badoo", "tinder", "okcupid"];
 const swipes = localStorage.getItem("swipes");
 var selectedService;
 var seenTutorial;
 var redShadowValues = "rgb(227 25 25) 0px 0px 20px";
-
-const EXTERNAL_API = "https://localhost:44345";
+const EXTERNAL_API = "https://localhost:44345"; //"https://api.autolovers.com";
 const TUTORIAL_ONE = "First, Log into the dating apps you wish to automate & click on them to add it to your cart!";
 const TUTORIAL_TWO = "Then choose the ammount & duration, or remove and start over!";
 const TUTORIAL_THREE = "Finally, choose a payment method & fill out all the required fields. Enjoy!";
@@ -85,7 +84,7 @@ function StartTutorial() {
             $('.services-wrapper').css('z-index', '-2');
             $('.order-wrapper').css('z-index', '1');
             $('.services-wrapper').removeClass('tutorial');
-            $('.tutorial-box-1').fadeOut(300, function() {
+            $('.tutorial-box-1').fadeOut("slow", function() {
                 $(this).remove();
             });
 
@@ -117,7 +116,7 @@ function StartTutorial() {
                 $('.order-wrapper').css('z-index', '-3');
                 $('.checkout-wrapper').css('z-index', '2');
                 $('.order-wrapper').removeClass('tutorial');
-                $('.tutorial-box-2').fadeOut(300, function() {
+                $('.tutorial-box-2').fadeOut("slow", function() {
                     $(this).remove();
                 });
 
@@ -128,7 +127,7 @@ function StartTutorial() {
                     console.log('clicked arrow 3');
 
                     $('.checkout-wrapper').removeClass('tutorial');
-                    $('.tutorial-box-3').fadeOut(300, function() {
+                    $('.tutorial-box-3').fadeOut("slow", function() {
                         $(this).remove();
                     });
                     $('.services-wrapper').css('z-index', '99');
@@ -138,7 +137,7 @@ function StartTutorial() {
                     $.ajax({
                         type: "POST",
                         xhrFields: { withCredentials: true },
-                        url: EXTERNAL_API + '/api/tutorial',
+                        url: EXTERNAL_API + '/user/tutorial',
                         contentType: "application/json",
                         data: JSON.stringify({
                             SeenTutorial: true,
@@ -158,6 +157,39 @@ function StartTutorial() {
     })
 
 }
+
+function removeA(arr) {
+    var what, a = arguments,
+        L = a.length,
+        ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax = arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+
+function removeService(serviceName) {
+    removeA(clickServicesList, serviceName);
+    serviceValues = giveValue(serviceName);
+    var totalpay = parseFloat(dict["totalPayment"]) - parseFloat(serviceValues.totalPrice);
+
+    $('.total-payment-text').empty();
+    $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
+    dict["totalPayment"] = totalpay;
+
+    var selector = document.querySelector('.add-more-wrapper-' + serviceName);
+
+    $('.service-wrapper-' + serviceName).css('box-shadow', 'none');
+    $('.error-' + serviceName).remove();
+    selector.remove();
+    serviceValues.counter = 0;
+    serviceValues.totalSwipes = 0;
+    serviceValues.totalPrice = 0;
+    orderHeight = $('.order-wrapper').height();
+}
 $(document).ready(function() {
 
     $('.service ').on('click', function(e) {
@@ -172,64 +204,64 @@ $(document).ready(function() {
     // add service
     try {
         container.addEventListener('click', function(e) {
-
-            var k;
-
-            for (const key of services) {
-                var val = e.target.classList[0];
-                var name = val.split('-')[1]
-                if (name == key) {
-                    k = name;
-                }
-            }
-            if (name == k && k) {
-                var str = e.target.classList[0];
-                serviceName = str.substring(str.indexOf("-") + 1);
-                var containsService = clickServicesList.includes(serviceName);
-
-                if (!(containsService)) {
-
-                    clickServicesList.push(serviceName);
-                    console.log(clickServicesList)
-                    dict[serviceName].swipes = swipes;
-                    if (swipes) {
-                        var price = priceGenerator(swipes);
-                        serviceValues = giveValue(serviceName);
-
-                        dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(serviceValues.swipes);
-                        dict[serviceName].totalPrice = parseFloat(price);
-
-                        dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
-
-                        totalPayment = giveValue("totalPayment");
-                        serviceValues = giveValue(serviceName);
-
-
-                        var selected = $("#swipes-dropdown option:selected").text();
-                        if (swipes == 500) {
-                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\" selected>500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
-
-                        } else if (swipes == 1500) {
-                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\" selected>1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
-
-                        } else if (swipes == 2000) {
-                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\" selected>2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
-
-                        } else if (swipes == 2500) {
-                            $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\"selected>2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
-
-                        }
-                        console.log("ot :" + selected)
-                        $('.total-payment-text').empty();
-                        $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
-
-                        orderHeight = $('.order-wrapper').height();
-                        console.log(orderHeight)
-                        serviceValues.counter++;
+            var val = e.target.classList[0];
+            if (val) {
+                var k;
+                for (const key of services) {
+                    var name = val.split('-')[1]
+                    if (name == key) {
+                        k = name;
                     }
                 }
-            } else {
-                container.removeEventListener('click', e);
+                if (name == k && k && !e.target.classList.contains('buttonDisabled')) {
+                    var str = e.target.classList[0];
+                    serviceName = str.substring(str.indexOf("-") + 1);
+                    var containsService = clickServicesList.includes(serviceName);
+
+                    if (!(containsService)) {
+
+                        clickServicesList.push(serviceName);
+                        console.log(clickServicesList)
+                        dict[serviceName].swipes = swipes;
+                        if (swipes) {
+                            var price = priceGenerator(swipes);
+                            serviceValues = giveValue(serviceName);
+
+                            dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(serviceValues.swipes);
+                            dict[serviceName].totalPrice = parseFloat(price);
+
+                            dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
+
+                            totalPayment = giveValue("totalPayment");
+                            serviceValues = giveValue(serviceName);
+
+
+                            var selected = $("#swipes-dropdown option:selected").text();
+                            if (swipes == 500) {
+                                $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\" selected>500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
+
+                            } else if (swipes == 1500) {
+                                $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\" selected>1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
+
+                            } else if (swipes == 2000) {
+                                $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\" selected>2000 a day</option><option value=\"2500\">2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
+
+                            } else if (swipes == 2500) {
+                                $(".payment-section-items").append("<div style=\"margin-top: 30px; margin-bottom: 30px; width: 300px; display: inline-flex; justify-content: space-between; align-items: center;\" class=\"add-more-wrapper add-more-wrapper-" + serviceName + "\"><img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown " + serviceName + "-dropdown\"><option value=\"500\">500 a day</option><option value=\"1500\">1500 day</option> <option value=\"2000\">2000 a day</option><option value=\"2500\"selected>2500 a day</option></select><h3 class=\"service-price\">" + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3><p class=\"service-remove " + serviceName + "-remove\"> X</p><h3 class=\"for-text\"> for </h3><select class=\"repeat-" + serviceName + " repeat\"> <option value=\"1\">1 day</option> <option value=\"2\">2 days</option> <option value=\"3\">3 days</option> <option value=\"4\">4 days</option> <option value=\"5\">5 days</option> <option value=\"6\">6 days</option> <option value=\"7\">1 week</option></select></div></div>");
+
+                            }
+                            console.log("ot :" + selected)
+                            $('.total-payment-text').empty();
+                            $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
+
+                            orderHeight = $('.order-wrapper').height();
+                            console.log(orderHeight)
+                            serviceValues.counter++;
+                        }
+                    }
+                } else {
+                    container.removeEventListener('click', e);
+                }
             }
         });
     } catch (error) {
@@ -312,18 +344,7 @@ $(document).ready(function() {
 
     }
 
-    function removeA(arr) {
-        var what, a = arguments,
-            L = a.length,
-            ax;
-        while (L > 1 && arr.length) {
-            what = a[--L];
-            while ((ax = arr.indexOf(what)) !== -1) {
-                arr.splice(ax, 1);
-            }
-        }
-        return arr;
-    }
+
 
     //REMOVE ELEMENTS
 
@@ -352,23 +373,7 @@ $(document).ready(function() {
 
             if (e.target.classList.contains(str) && k) {
 
-                removeA(clickServicesList, serviceName);
-                serviceValues = giveValue(serviceName);
-                var totalpay = parseFloat(dict["totalPayment"]) - parseFloat(serviceValues.totalPrice);
-                console.log("total pay: " + totalpay)
-                $('.total-payment-text').empty();
-                $('.total-payment-text').append(Math.round((totalpay + Number.EPSILON) * 100) / 100 + " $");
-                dict["totalPayment"] = totalpay;
-
-                var selector = document.querySelector('.add-more-wrapper-' + serviceName);
-
-                $('.service-wrapper-' + serviceName).css('box-shadow', 'none');
-                $('.error-' + serviceName).remove();
-                selector.remove();
-                serviceValues.counter = 0;
-                serviceValues.totalSwipes = 0;
-                serviceValues.totalPrice = 0;
-                orderHeight = $('.order-wrapper').height();
+                removeService(serviceName);
             }
         });
 
@@ -380,31 +385,34 @@ $(document).ready(function() {
 
         container.addEventListener('click', function(e) {
             var str = e.target.classList[0];
+            if (str) {
 
-            serviceName = str.split('-')[1]
-            if (e.target.classList.contains('addmore-' + serviceName)) {
-                var swipes = localStorage.getItem("swipes");
 
-                var price = priceGenerator(swipes);
+                serviceName = str.split('-')[1]
+                if (e.target.classList.contains('addmore-' + serviceName)) {
+                    var swipes = localStorage.getItem("swipes");
 
-                serviceValues = giveValue(serviceName);
+                    var price = priceGenerator(swipes);
 
-                dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(swipes);
-                dict[serviceName].totalPrice = parseFloat(serviceValues.totalPrice) + parseFloat(price);
+                    serviceValues = giveValue(serviceName);
 
-                dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
+                    dict[serviceName].totalSwipes = parseFloat(serviceValues.totalSwipes) + parseFloat(swipes);
+                    dict[serviceName].totalPrice = parseFloat(serviceValues.totalPrice) + parseFloat(price);
 
-                totalPayment = giveValue("totalPayment");
-                serviceValues = giveValue(serviceName);
+                    dict["totalPayment"] = parseFloat(dict.totalPayment) + parseFloat(price);
 
-                $(".item-" + serviceName + "").empty();
-                $(".item-" + serviceName + "").append("<img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown\"><option value=\"500\">500 likes a day</option><option value=\"1500\">1500 likes day</option> <option value=\"2000\">2000 likes a day</option><option value=\"2500\">2500 likes a day</option></select><h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p>");
+                    totalPayment = giveValue("totalPayment");
+                    serviceValues = giveValue(serviceName);
 
-                $('.total-payment-text').empty();
-                $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
+                    $(".item-" + serviceName + "").empty();
+                    $(".item-" + serviceName + "").append("<img src=\"/media/" + serviceName + ".png\" alt=\"\" class=\"service-mini-logo\"><select name=\"swipes\" class=\"swipes-dropdown\"><option value=\"500\">500 likes a day</option><option value=\"1500\">1500 likes day</option> <option value=\"2000\">2000 likes a day</option><option value=\"2500\">2500 likes a day</option></select><h3 class=\"service-price\"> " + Math.round((serviceValues.totalPrice) * 100) / 100 + "$</h3> <p class=\"service-remove " + serviceName + "-remove\"> X</p>");
 
-            } else {
-                container.removeEventListener('click', e);
+                    $('.total-payment-text').empty();
+                    $('.total-payment-text').append(Math.round((totalPayment) * 100) / 100 + " $");
+
+                } else {
+                    container.removeEventListener('click', e);
+                }
             }
         });
     } catch (error) {
@@ -440,20 +448,35 @@ function priceGenerator(totalSwipes) {
     }
 }
 
+function planGenerator(likes) {
+    switch (likes) {
+        case 500:
+            return 1;
+        case 1500:
+            return 2;
+        case 2000:
+            return 3;
+        case 2500:
+            return 4;
+        default:
+            return 0;
+    }
+}
+
 
 (function check() {
     url = window.location.href;
     loginv = window.location.href.indexOf("login")
     checkout = window.location.href.indexOf("checkOut")
     dashboard = window.location.href.indexOf("dashboard")
-    value = readCookie('username');
-    if (value) {
-        value = value.split('%')[0];
+    nameValue = readCookie('username');
+    if (nameValue) {
+        nameValue = nameValue.split('%')[0];
     }
     seenTutorial = readCookie('tutorial');
 
     //no session exist for user
-    if (!value) {
+    if (!nameValue) {
         // setLoggedInState();
         if (loginv < -1) {
 
@@ -467,7 +490,7 @@ function priceGenerator(totalSwipes) {
         }
     }
     //session exists
-    if (!(!value)) {
+    if (!(!nameValue)) {
         if (loginv > -1) {
             location.href = "/index.html";
         }
@@ -522,53 +545,96 @@ $(document).ready(function() {
             console.log(orderHeight)
         }
     }
-    if (!(!value)) {
+    if (!(!nameValue)) {
+
         if (dashboard > -1) {
             $('.service').hide();
             $('.authenticated-service').hide();
-            $('.uname').text(value);
+            $('.uname').text(nameValue);
             $('.inner-service').append('<div class="loader"></div>');
-            $('.loader').css('display', 'block');
+            $('.interface-container').append('<div style="margin-top: 150px;" class="loader"></div>');
             //  $('.btn-login-service').hide();
             // $('.service-credentials').hide();
             $.ajax({
                 type: "GET",
                 xhrFields: { withCredentials: true },
-                url: EXTERNAL_API + '/api/authServices',
+                url: EXTERNAL_API + '/services/authServices',
                 dataType: 'JSON',
-                success: function(response) {
-                    $('.loader').remove();
-
-                    for (let [key, value] of Object.entries(allServices)) {
-                        key = parseInt(key);
-                        console.log
-                        if (response.includes(key)) {
-                            authenticatedServices.push(value);
-
-
-                            // $('.credentials-box-wrapper-').prepend('<div class=\"service-message message-' + value + '\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
-                            // $('.date-service').val(new Date().toDateInputValue());
-                            // $('.date-service').prop('min', function() {
-                            //     return new Date().toDateInputValue();
-                            //  });
+                success: async function(response) {
+                    await response.forEach(element => {
+                        getAndSetProfileImage(element.service);
+                        getUserInfo();
+                        $('.loader').remove();
+                        for (let [key, value] of Object.entries(allServices)) {
+                            if (response[key] != undefined && response[key].service == key) {
+                                key = parseInt(key);
+                                if (response[key].service == key) {
+                                    authenticatedServices.push(value);
+                                    $('.imgwrapper-' + value).prepend('<img src="/media/checkmark.png" class="valid"/>');
+                                }
+                            }
                         }
-                    }
+                        if (authenticatedServices.length == 0) {
+                            getUserInfo();
+                            $('.loader').remove();
+                        }
+                    });
 
-                    //$('.loader').remove();
-                    //$('.btnName').show();
-                    //$('.loader-' + serviceName).prepend('<div class=\"service-message message-badoo\"><p>Start at </p> <input class=\"date-badoo date-service\" type=\"datetime-local\"></div>');
                 },
                 error: function(error) {
-                    // $('.loader').remove();
-                    //  $('.btnName').show();
-                    // $('.service-credentials').show();
-                    //$('.login-' + serviceName).show();
-                    console.log(error);
+                    getUserInfo();
+                    $('.loader').remove();
                 }
             });
         }
+        authenticatedServices.forEach(element => {
+            $('.imgwrapper-' + element).prepend('<img src="/media/checkmark.png" class="valid"/>');
+        });
+
     }
 });
+
+async function getAndSetProfileImage(service) {
+    $.ajax({
+        type: "POST",
+        xhrFields: { withCredentials: true },
+        url: EXTERNAL_API + '/actions/getImages',
+        contentType: "application/json",
+        data: JSON.stringify({
+            Service: service
+        }),
+        success: function(response) {
+            $.each(response, function(k, v) {
+                $(".profile-picture").attr("src", v);
+                return false;
+            });
+
+        },
+        error: function(error) {
+            console.log(error)
+        }
+    });
+}
+
+async function getUserInfo() {
+    $.ajax({
+        type: "GET",
+        xhrFields: { withCredentials: true },
+        url: EXTERNAL_API + '/user/info',
+        contentType: "application/json",
+        success: function(response) {
+            $('#username').html(response.name + ', ');
+            $('#age').html(response.age);
+            $('.about-me-text').html(response.about);
+        },
+        error: function(error) {
+            $('#username').html(nameValue);
+            $('#username').css("width", "45px");
+            $('#age').html();
+        }
+    });
+}
+
 
 $(document).ready(function() {
     const servicesContaienr = document.querySelector('.services-multiple');
@@ -600,7 +666,7 @@ $(document).ready(function() {
                     $.ajax({
                         type: "POST",
                         xhrFields: { withCredentials: true },
-                        url: EXTERNAL_API + '/api/getImages',
+                        url: EXTERNAL_API + '/actions/getImages',
                         contentType: "application/json",
                         data: JSON.stringify({
                             Service: service
@@ -666,12 +732,47 @@ $(document).ready(function() {
     } catch (error) {
 
     }
+    var oldAbout;
+    try {
+
+        serviceContaienr.addEventListener('click', function(e) {
+            $('.error-service-login').remove();
+            if (e.target.parentNode.classList[0] == 'about-me') {
+                oldAbout = $('.about-me-text').text();
+                $('.about-me-text').hide();
+                $('.update-btn-about-me').hide();
+
+                $('.about-wrapper').append('<textarea maxlength="500" class="about-me-text-box"></textarea><p class="cancel">x</p><div class="update-btn"><p class="update-btn-text">Update</p></div>');
+
+            }
+        });
+    } catch (error) {
+
+    }
+    try {
+
+        serviceContaienr.addEventListener('click', function(e) {
+            $('.error-service-login').remove();
+            if (e.target.classList[0] == 'cancel') {
+                $('.cancel').remove();
+                $('.update-btn').remove();
+                $('.update-btn-text').remove();
+                $('.about-me-text-box').remove();
+                $('.about-me-text').show();
+                $(".about-me-text").html(oldAbout);
+                $('.update-btn-about-me').show();
+            }
+        });
+    } catch (error) {
+
+    }
 
     try {
 
         serviceContaienr.addEventListener('click', function(e) {
             $('.error-service-login').remove();
             if (e.target.parentNode.classList[0] == 'update-btn') {
+                $('.about-me').prepend('<div class="loader" style="position: absolute; top:700px;margin-left: 60px;"></div>');
 
                 var about = $(".about-me-text-box").val();
                 var service = parseInt(getKeyByValue(allServices, selectedService));
@@ -679,7 +780,7 @@ $(document).ready(function() {
                 $.ajax({
                     type: "POST",
                     xhrFields: { withCredentials: true },
-                    url: EXTERNAL_API + '/api/updateAbout',
+                    url: EXTERNAL_API + '/actions/updateAbout',
                     contentType: "application/json",
                     data: JSON.stringify({
                         About: about,
@@ -687,10 +788,24 @@ $(document).ready(function() {
                     }),
                     success: function(response) {
                         console.log(response)
-                        $(".about-me-text-box").val(response);
+                        $('.cancel').remove();
+                        $('.loader').remove();
+                        $('.update-btn').remove();
+                        $('.update-btn-text').remove();
+                        $('.about-me-text-box').remove();
+                        $('.about-me-text').show();
+                        $(".about-me-text").html(response.about);
+                        $('.update-btn-about-me').show();
                     },
                     error: function(error) {
-
+                        $('.cancel').remove();
+                        $('.loader').remove();
+                        $('.update-btn').remove();
+                        $('.update-btn-text').remove();
+                        $('.about-me-text-box').remove();
+                        $('.about-me-text').show();
+                        $(".about-me-text").html(oldAbout);
+                        $('.update-btn-about-me').show();
                     }
                 });
             }
@@ -719,10 +834,11 @@ $(document).ready(function() {
         var file = new FormData();
         var service = parseInt(getKeyByValue(allServices, selectedService));
         file.append("file", file_data);
+        file.append("data", service)
 
         $.ajax({
             xhrFields: { withCredentials: true },
-            url: EXTERNAL_API + '/api/uploadImage',
+            url: EXTERNAL_API + '/actions/uploadImage',
             type: "POST",
             dataType: 'json',
             data: file,
@@ -755,7 +871,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: EXTERNAL_API + '/api/removeImage',
+            url: EXTERNAL_API + '/actions/removeImage',
             xhrFields: { withCredentials: true },
             contentType: "application/json",
             data: JSON.stringify({
@@ -784,9 +900,9 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
-    if (!(!value)) {
+    if (!(!nameValue)) {
         if (checkout > -1) {
-            $('.uname').text(value);
+            $('.uname').text(nameValue);
             $('.credentials-box-wrapper').append('<div class="loader"></div>');
             $('.loader').css('display', 'block');
             //  $('.btn-login-service').hide();
@@ -794,7 +910,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "GET",
                 xhrFields: { withCredentials: true },
-                url: EXTERNAL_API + '/api/authServices',
+                url: EXTERNAL_API + '/services/authServices',
                 dataType: 'JSON',
                 success: function(response) {
                     $('.loader').remove();
@@ -804,9 +920,12 @@ $(document).ready(function() {
                     //services return in int form
 
                     for (let [key, value] of Object.entries(allServices)) {
+                        console.log('AAAAAA' + allServices)
+                        console.log('AAAAAA' + value)
+                        console.log(key)
                         key = parseInt(key);
                         console.log
-                        if (response.includes(key)) {
+                        if (response[key] != undefined && response[key].service == key) {
                             authenticatedServices.push(value);
                             console.log(authenticatedServices);
                             var serviceFactory = new ServiceFactory();
@@ -818,6 +937,13 @@ $(document).ready(function() {
                             $('.date-service').prop('min', function() {
                                 return new Date().toDateInputValue();
                             });
+                            //For testing uncomment Premium = true
+                            //response[key].Premium = true;
+                            if (!response[key].Premium) {
+                                disableService(value);
+                                removeService(value);
+                                $('.credentials-box-wrapper-' + value).append('<p style="color:red; pointer-events: auto;">Not enough likes left! please Upgrade on <a style="border-bottom:1px solid black;" href=https://' + value + '.com>badoo.com</a></p>')
+                            }
                         } else {
                             if (checkout > -1) {
 
@@ -843,12 +969,26 @@ $(document).ready(function() {
                     $('.btnName').show();
                     $('.service-credentials').show();
                     $('.login-' + serviceName).show();
+                    getUserInfo();
+
                     console.log(error);
                 }
             });
         }
     }
 });
+
+function disableService(value) {
+    $('.service-' + value).addClass('buttonDisabled', 'disable-select');
+    $('.service-' + value).css('cursor', 'default');
+    $('.service-' + value).css('transform', 'none');
+    $('.service-' + value).css('pointer-events', 'none');
+    $('.service-wrapper-' + value).addClass('buttonDisabled', 'disable-select');
+    $('.date-' + value).prop('disabled', true);
+    $('.service-wrapper-' + value).addClass('disabler');
+    $('.service-wrapper-' + value).css('cursor', 'default');
+    $('.date-' + value).addClass('buttonDisabled', 'disable-select');
+}
 
 function readCookie(name) {
     var nameEQ = name + "=";
@@ -910,7 +1050,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    if (value) {
+    if (nameValue) {
         setLoggedInState();
     }
 });
@@ -918,17 +1058,17 @@ $(document).ready(function() {
 function setLoggedInState() {
     windowsize = $(window).width();
 
-    if (value) {
+    if (nameValue) {
 
         $(".login").remove();
         $(".signup").remove();
 
         $(".nav-bar-items").append("<li class=\"dashboard nav-item\"> <a href=\"\/dashboard.html\">Dashboard<\/a> <\/li>");
         if (windowsize < 1100) {
-            $("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a> <\/li>").insertBefore(".what-we-do");
+            $("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + nameValue + "!<\/a> <\/li>").insertBefore(".what-we-do");
             $(".nav-bar-items").append("<li class=\"logout\"><a>Logout<\/a><\/li>")
         } else {
-            $(".nav-bar-items").append("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + value + "!<\/a><\/li>")
+            $(".nav-bar-items").append("<li class=\"user\"> <a href=\"\/dashboard.html\">Welcome " + nameValue + "!<\/a><\/li>")
             $(".nav-bar-items").append("<li class=\"logout\"><a>Logout<\/a><\/li>")
         }
         $(".nav-bar-items").css("margin-left", "35%")
@@ -939,7 +1079,7 @@ function setLoggedInState() {
         $(".logout").remove();
         $(".nav-bar-items").append('<li class="login nav-item"><a href="/login.html">Login</a></li>');
         $(".nav-bar-items").append('<li class="signup nav-item"><a href="/login.html">Sign up</a></li>');
-
+        location.href = "/index.html";
     }
 }
 
@@ -982,7 +1122,7 @@ $(document).ready(function() {
         localStorage.setItem("swipes", totalSwipes);
 
         event.preventDefault();
-        if (!(!value)) {
+        if (!(!nameValue)) {
             location.href = "/checkOut.html";
         } else {
 
@@ -996,7 +1136,7 @@ $(document).ready(function() {
         localStorage.setItem("swipes", totalSwipes);
 
         event.preventDefault();
-        if (!(!value)) {
+        if (!(!nameValue)) {
             location.href = "/checkOut.html";
         } else {
 
@@ -1011,7 +1151,7 @@ $(document).ready(function() {
         localStorage.setItem("swipes", totalSwipes);
 
         event.preventDefault();
-        if (!(!value)) {
+        if (!(!nameValue)) {
             location.href = "/checkOut.html";
         } else {
 
@@ -1026,7 +1166,7 @@ $(document).ready(function() {
         localStorage.setItem("swipes", totalSwipes);
 
         event.preventDefault();
-        if (!(!value)) {
+        if (!(!nameValue)) {
             location.href = "/checkOut.html";
         } else {
 
@@ -1055,10 +1195,10 @@ $(document).ready(function() {
         $.ajax({
             xhrFields: { withCredentials: true },
             type: "POST",
-            url: EXTERNAL_API + '/logout',
+            url: EXTERNAL_API + '/authorize/logout',
             contentType: "application/json",
             success: function(response) {
-                value = undefined;
+                nameValue = undefined;
                 deleteCookie('username');
                 deleteCookie('tutorial');
                 setLoggedInState();
@@ -1083,7 +1223,7 @@ $(document).ready(function() {
         $.ajax({
             xhrFields: { withCredentials: true },
             type: "POST",
-            url: EXTERNAL_API + '/login',
+            url: EXTERNAL_API + '/authorize/login',
             data: JSON.stringify({
                 UserName: email,
                 Password: password
@@ -1125,7 +1265,6 @@ function loginToService(serviceName, context) {
     console.log(username)
     console.log(context)
 
-
     data = {
         UserName: username,
         Password: password,
@@ -1143,16 +1282,15 @@ function loginToService(serviceName, context) {
     $.ajax({
         type: "POST",
         xhrFields: { withCredentials: true },
-        url: EXTERNAL_API + '/api/login',
+        url: EXTERNAL_API + '/services/loginToService',
         data: JSON.stringify({
-
             UserName: data.UserName,
             Password: data.Password,
             Service: data.Service
         }),
         contentType: "application/json",
         success: function(response) {
-
+            var x = response;
             $('.loader').remove();
             $('.btnName').show();
 
@@ -1161,6 +1299,12 @@ function loginToService(serviceName, context) {
             $('.date-service').prop('min', function() {
                 return new Date().toDateInputValue();
             });
+            authenticatedServices.push(serviceName);
+            if (!response.premium) {
+                disableService(serviceName);
+                removeService(serviceName);
+                $('.credentials-box-wrapper-' + serviceName).append('<p style="color:red; pointer-events: auto;">Not enough likes left! please Upgrade on <a style="border-bottom:1px solid black;" href=https://' + serviceName + '.com>badoo.com</a></p>')
+            }
         },
         error: function(error) {
             $('.loader').remove();
@@ -1174,9 +1318,19 @@ function loginToService(serviceName, context) {
 }
 
 function registerToWebsite() {
+    $('.wrong-credentials').remove();
     let username = $('.text-box-register-email').val()
     let password = $('.text-box-register-password').val()
+    let repeatPassword = $('.text-box-register-repeat').val()
+    if (password != repeatPassword) {
+        $('.register-t').append('<p class="wrong-credentials" style="font-weight:normal; font-size: 15px; color:red;">Password does not match..</p>')
+        console.log('no')
+        return;
+    }
 
+    $('.register-credentials').hide();
+    $('.wrong-credentials').remove();
+    $('.register-section').append('<div style="margin-top:72px;margin-bottom:50px;" class="loader"></div>');
     data = {
         UserName: username,
         Password: password,
@@ -1185,7 +1339,7 @@ function registerToWebsite() {
     $.ajax({
         type: "POST",
         xhrFields: { withCredentials: true },
-        url: EXTERNAL_API + '/register',
+        url: EXTERNAL_API + '/authorize/register',
         data: JSON.stringify({
             UserName: data.UserName,
             Password: data.Password
@@ -1193,11 +1347,16 @@ function registerToWebsite() {
 
         contentType: "application/json",
         success: function(response) {
-            alert("here")
+
             location.href = "/dashboard.html";
         },
         error: function(error) {
-            console.log(error);
+
+
+            $('.register-t').append('<p class="wrong-credentials" style="font-weight:normal; font-size: 15px; color:red;">Email already taken.</p>')
+            $('.register-credentials').show();
+            $('.loader').remove();
+
         }
     });
 }
@@ -1212,7 +1371,7 @@ function getImages() {
 
     $.ajax({
         type: "POST",
-        url: EXTERNAL_API + '/api/getImages',
+        url: EXTERNAL_API + '/actions/getImages',
         data: JSON.stringify({
 
             UserId: data.UserId,
@@ -1270,25 +1429,22 @@ $(document).ready(function() {
                         const value = servicesValues[index].totalSwipes;
                         const repeat = servicesValues[index].repeat;
                         //index is also the services name cuz its an enum
-                        data.push({ Service: index, Likes: value, Repeat: repeat })
+                        data.push({ Service: index, Likes: value, Repeat: repeat, Plan: planGenerator(value) })
                     }
                 }
             }
             console.log(data)
             $.ajax({
                 type: "POST",
-                url: EXTERNAL_API + '/api/schedule',
+                url: EXTERNAL_API + '/actions/schedule',
                 xhrFields: { withCredentials: true },
                 data: JSON.stringify(data),
-                dataType: "json",
                 contentType: 'application/json',
                 success: function(response) {
-                    let res = response;
-
-                    console.log(response);
+                    location.href = "/dashboard.html";
                 },
                 error: function(error) {
-                    console.log(error);
+
                 }
             });
         } else {

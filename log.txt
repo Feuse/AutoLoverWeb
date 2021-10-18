@@ -1,0 +1,512 @@
+User Dr. Amy Farrah Fowler (NON-VIP) has 999 coins. Account value: 1000.
+Average value per: color (total 1) - 1000.00, stripe (total 33) - 30.30, star (total 7) - 142.86.
+Owned flags:
+RRRRRR - akimov (price: 1)
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 899 coins. Account value: 1000.
+Average value per: color (total 5) - 200.00, stripe (total 38) - 26.32, star (total 8) - 125.00.
+Owned flags:
+RRRRRR - akimov (price: 1)
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 799 coins. Account value: 1000.
+Average value per: color (total 9) - 111.11, stripe (total 43) - 23.26, star (total 9) - 111.11.
+Owned flags:
+RRRRRR - akimov (price: 1)
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 699 coins. Account value: 1000.
+Average value per: color (total 13) - 76.92, stripe (total 46) - 21.74, star (total 10) - 100.00.
+Owned flags:
+RRRRRR - akimov (price: 1)
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 499 coins. Account value: 1000.
+Average value per: color (total 16) - 62.50, stripe (total 57) - 17.54, star (total 11) - 90.91.
+Owned flags:
+RRRRRR - akimov (price: 1)
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
+User Dr. Amy Farrah Fowler (NON-VIP) has 1000 coins. Account value: 1000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 900 coins. Account value: 1000.
+Average value per: color (total 4) - 250.00, stripe (total 5) - 200.00, star (total 1) - 1000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 800 coins. Account value: 1000.
+Average value per: color (total 8) - 125.00, stripe (total 10) - 100.00, star (total 2) - 500.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 700 coins. Account value: 1000.
+Average value per: color (total 12) - 83.33, stripe (total 13) - 76.92, star (total 3) - 333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 500 coins. Account value: 1000.
+Average value per: color (total 15) - 66.67, stripe (total 24) - 41.67, star (total 4) - 250.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
+User Dr. Amy Farrah Fowler (NON-VIP) has 300 coins. Account value: 1000.
+Average value per: color (total 19) - 52.63, stripe (total 27) - 37.04, star (total 5) - 200.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is trying to buy flag Philippines
+User Dr. Amy Farrah Fowler (NON-VIP) has 0 coins. Account value: 1000.
+Average value per: color (total 23) - 43.48, stripe (total 29) - 34.48, star (total 6) - 166.67.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+ is selling flag Suriname. Suriname Sold successfully!
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000000 coins. Account value: 100000000000000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999900 coins. Account value: 100000000000000.
+Average value per: color (total 4) - 25000000000000.00, stripe (total 5) - 20000000000000.00, star (total 1) - 100000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999800 coins. Account value: 100000000000000.
+Average value per: color (total 8) - 12500000000000.00, stripe (total 10) - 10000000000000.00, star (total 2) - 50000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999700 coins. Account value: 100000000000000.
+Average value per: color (total 12) - 8333333333333.33, stripe (total 13) - 7692307692307.69, star (total 3) - 33333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999500 coins. Account value: 100000000000000.
+Average value per: color (total 15) - 6666666666666.67, stripe (total 24) - 4166666666666.67, star (total 4) - 25000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999300 coins. Account value: 100000000000000.
+Average value per: color (total 19) - 5263157894736.84, stripe (total 27) - 3703703703703.70, star (total 5) - 20000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is trying to buy flag Philippines
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999000 coins. Account value: 100000000000000.
+Average value per: color (total 23) - 4347826086956.52, stripe (total 29) - 3448275862068.97, star (total 6) - 16666666666666.67.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+ is trying to buy flag Uzbekistan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999998600 coins. Account value: 100000000000000.
+Average value per: color (total 27) - 3703703703703.70, stripe (total 34) - 2941176470588.24, star (total 18) - 5555555555555.56.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+ is trying to buy flag Tajikistan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999998100 coins. Account value: 100000000000000.
+Average value per: color (total 31) - 3225806451612.90, stripe (total 37) - 2702702702702.70, star (total 25) - 4000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+ is trying to buy flag Slovenia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999997500 coins. Account value: 100000000000000.
+Average value per: color (total 34) - 2941176470588.24, stripe (total 40) - 2500000000000.00, star (total 28) - 3571428571428.57.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+ is trying to buy flag Syria
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999996800 coins. Account value: 100000000000000.
+Average value per: color (total 38) - 2631578947368.42, stripe (total 43) - 2325581395348.84, star (total 30) - 3333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+ is trying to buy flag Honduras
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999996000 coins. Account value: 100000000000000.
+Average value per: color (total 40) - 2500000000000.00, stripe (total 45) - 2222222222222.22, star (total 35) - 2857142857142.86.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+ is trying to buy flag Cape Verde
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000000 coins. Account value: 100000000000000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999900 coins. Account value: 100000000000000.
+Average value per: color (total 4) - 25000000000000.00, stripe (total 5) - 20000000000000.00, star (total 1) - 100000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999800 coins. Account value: 100000000000000.
+Average value per: color (total 8) - 12500000000000.00, stripe (total 10) - 10000000000000.00, star (total 2) - 50000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999700 coins. Account value: 100000000000000.
+Average value per: color (total 12) - 8333333333333.33, stripe (total 13) - 7692307692307.69, star (total 3) - 33333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999500 coins. Account value: 100000000000000.
+Average value per: color (total 15) - 6666666666666.67, stripe (total 24) - 4166666666666.67, star (total 4) - 25000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999300 coins. Account value: 100000000000000.
+Average value per: color (total 19) - 5263157894736.84, stripe (total 27) - 3703703703703.70, star (total 5) - 20000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is trying to buy flag Philippines
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999000 coins. Account value: 100000000000000.
+Average value per: color (total 23) - 4347826086956.52, stripe (total 29) - 3448275862068.97, star (total 6) - 16666666666666.67.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+ is trying to buy flag Uzbekistan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999998600 coins. Account value: 100000000000000.
+Average value per: color (total 27) - 3703703703703.70, stripe (total 34) - 2941176470588.24, star (total 18) - 5555555555555.56.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+ is trying to buy flag Tajikistan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999998100 coins. Account value: 100000000000000.
+Average value per: color (total 31) - 3225806451612.90, stripe (total 37) - 2702702702702.70, star (total 25) - 4000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+ is trying to buy flag Slovenia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999997500 coins. Account value: 100000000000000.
+Average value per: color (total 34) - 2941176470588.24, stripe (total 40) - 2500000000000.00, star (total 28) - 3571428571428.57.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+ is trying to buy flag Syria
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999996800 coins. Account value: 100000000000000.
+Average value per: color (total 38) - 2631578947368.42, stripe (total 43) - 2325581395348.84, star (total 30) - 3333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+ is trying to buy flag Honduras
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999996000 coins. Account value: 100000000000000.
+Average value per: color (total 40) - 2500000000000.00, stripe (total 45) - 2222222222222.22, star (total 35) - 2857142857142.86.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+ is trying to buy flag Cape Verde
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999995100 coins. Account value: 100000000000000.
+Average value per: color (total 44) - 2272727272727.27, stripe (total 50) - 2000000000000.00, star (total 45) - 2222222222222.22.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+ is trying to buy flag Israel
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999994100 coins. Account value: 100000000000000.
+Average value per: color (total 46) - 2173913043478.26, stripe (total 52) - 1923076923076.92, star (total 46) - 2173913043478.26.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+Israel - The country that brought you CSA (price: 1000)
+ is trying to buy flag Russia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999992900 coins. Account value: 100000000000000.
+Average value per: color (total 49) - 2040816326530.61, stripe (total 55) - 1818181818181.82, star (total 46) - 2173913043478.26.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+Israel - The country that brought you CSA (price: 1000)
+Russia - Home to the Hermitage Museum (price: 1200)
+ is trying to buy flag USA
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999991700 coins. Account value: 100000000000000.
+Average value per: color (total 52) - 1923076923076.92, stripe (total 68) - 1470588235294.12, star (total 96) - 1041666666666.67.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+Israel - The country that brought you CSA (price: 1000)
+Russia - Home to the Hermitage Museum (price: 1200)
+USA - United States of America (price: 1200)
+ is trying to buy flag Cuba
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999990400 coins. Account value: 100000000000000.
+Average value per: color (total 55) - 1818181818181.82, stripe (total 73) - 1369863013698.63, star (total 97) - 1030927835051.55.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+Israel - The country that brought you CSA (price: 1000)
+Russia - Home to the Hermitage Museum (price: 1200)
+USA - United States of America (price: 1200)
+Cuba - Famous for it's cigars (price: 1300)
+ is trying to buy flag CSA
+***ATTENTION - CSA FLAG PURCHASE. RUNNING ADDITIONAL CHECK*** Additional checks result - user is NOT ALLOWED to purchase it
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999990400 coins. Account value: 100000000000000.
+Average value per: color (total 55) - 1818181818181.82, stripe (total 73) - 1369863013698.63, star (total 97) - 1030927835051.55.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+Uzbekistan - Has the world's largest open-pit gold mine (price: 400)
+Tajikistan - Has the world's second highest dam (price: 500)
+Slovenia - Has the world's longest stone arch railroad bridge (price: 600)
+Syria - Has the world's oldest operational dam (price: 700)
+Honduras - Has a dual capital (price: 800)
+Cape Verde - Named after the Cap-Vert peninsula (price: 900)
+Israel - The country that brought you CSA (price: 1000)
+Russia - Home to the Hermitage Museum (price: 1200)
+USA - United States of America (price: 1200)
+Cuba - Famous for it's cigars (price: 1300)
+ is trying to buy flag CSA
+***ATTENTION - CSA FLAG PURCHASE. RUNNING ADDITIONAL CHECK*** Additional checks result - user is NOT ALLOWED to purchase it
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000000 coins. Account value: 100000000000000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000000 coins. Account value: 100000000000000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999900 coins. Account value: 100000000000000.
+Average value per: color (total 4) - 25000000000000.00, stripe (total 5) - 20000000000000.00, star (total 1) - 100000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999800 coins. Account value: 100000000000000.
+Average value per: color (total 8) - 12500000000000.00, stripe (total 10) - 10000000000000.00, star (total 2) - 50000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999700 coins. Account value: 100000000000000.
+Average value per: color (total 12) - 8333333333333.33, stripe (total 13) - 7692307692307.69, star (total 3) - 33333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999500 coins. Account value: 100000000000000.
+Average value per: color (total 15) - 6666666666666.67, stripe (total 24) - 4166666666666.67, star (total 4) - 25000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999300 coins. Account value: 100000000000000.
+Average value per: color (total 19) - 5263157894736.84, stripe (total 27) - 3703703703703.70, star (total 5) - 20000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is trying to buy flag Philippines
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999000 coins. Account value: 100000000000000.
+Average value per: color (total 23) - 4347826086956.52, stripe (total 29) - 3448275862068.97, star (total 6) - 16666666666666.67.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+Philippines - Named after King Philip II of Spain (price: 300)
+ is selling flag Philippines. Philippines Sold successfully!
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999900 coins. Account value: 100000000000600.
+Average value per: color (total 19) - 5263157894768.42, stripe (total 27) - 3703703703725.93, star (total 5) - 20000000000120.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is selling flag Suriname. Suriname Sold successfully!
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000100 coins. Account value: 100000000000700.
+Average value per: color (total 15) - 6666666666713.33, stripe (total 22) - 4545454545486.36, star (total 4) - 25000000000175.00.
+Owned flags:
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+Myanmar - Formerly known as Burma (price: 200)
+ is selling flag Togo. Togo Sold successfully!
+User Dr. Amy Farrah Fowler (NON-VIP) has 100000000000000 coins. Account value: 100000000000000.
+ is trying to buy flag Suriname
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999900 coins. Account value: 100000000000000.
+Average value per: color (total 4) - 25000000000000.00, stripe (total 5) - 20000000000000.00, star (total 1) - 100000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+ is trying to buy flag Togo
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999800 coins. Account value: 100000000000000.
+Average value per: color (total 8) - 12500000000000.00, stripe (total 10) - 10000000000000.00, star (total 2) - 50000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+ is trying to buy flag Azerbaijan
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999700 coins. Account value: 100000000000000.
+Average value per: color (total 12) - 8333333333333.33, stripe (total 13) - 7692307692307.69, star (total 3) - 33333333333333.33.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+ is trying to buy flag Liberia
+User Dr. Amy Farrah Fowler (NON-VIP) has 99999999999500 coins. Account value: 100000000000000.
+Average value per: color (total 15) - 6666666666666.67, stripe (total 24) - 4166666666666.67, star (total 4) - 25000000000000.00.
+Owned flags:
+Suriname - The smallest South American country (price: 100)
+Togo - Has French as the official language (price: 100)
+Azerbaijan - The Land of Fire (price: 100)
+Liberia - Has Africa's cleanest cities (price: 200)
+ is trying to buy flag Myanmar
